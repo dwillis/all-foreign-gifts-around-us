@@ -1,7 +1,8 @@
+import os
 import json
 from groq import Groq
 
-client = Groq(api_key='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')
+client = Groq(api_key=os.environ.get('GROQ_API_KEY'))
 
 def extract_info(text, example):
     completion = client.chat.completions.create(
