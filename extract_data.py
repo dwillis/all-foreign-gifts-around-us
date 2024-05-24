@@ -26,30 +26,33 @@ def extract_info(text, example):
 )
     return completion.choices[0].message.content
 
-def read_text_and_extract_data(input_txt_path, output_csv_path):
+def read_text_and_extract_data(input_txt_path, output_json_path):
     # Read the input text file
     with open(input_txt_path, 'r') as file:
         content = file.read()
 
-    # Extract the relevant section of the text manually or programmatically
-
-    # Provide an example of how the CSV should look
     example_json = {
-        "name_and_title": "The Honorable Joseph R. Biden Jr., President of the United States.",
-        "gift_description": "Painting titled ‘At Parika Stelling (Guyana).’ Rec’d—3/2/2022. Est. Value—$650.00. Disposition —Pending Transfer to NARA.",
-        "foreign_donor": "His Excellency Michael Martin, Prime Minister of Ireland.",
-        "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."
-    }
-    
-    extracted_info = extract_info(content, example_json)
+                "name_and_title": "The Honorable Joseph R. Biden Jr., President of the United States.",
+                "gift_description": "Painting titled 'At Parika Stelling (Guyana).' Rec'd—3/2/2022. Est. Value—$650.00. Disposition—Pending Transfer to NARA.",
+                "foreign_donor": "His Excellency Michael Martin, Prime Minister of Ireland.",
+                "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."
+            }
 
-    # Convert the string to json
+    # Split the text into sections
+    sections = content.split('Federal Register / Vol. ')
+
+    # Iterate over the sections and extract data
+    all_data = []
+    for section in sections:
+        if section.strip():  # Skip empty sections
+            extracted_info = extract_info(section, example_json)
+            all_data.append(extracted_info)
+
+    # Convert the list of data to JSON
     with open(output_json_path, 'w', newline='') as jsonfile:
-        json.dump(extracted_info, jsonfile, indent=4)
-
+        json.dump(all_data, jsonfile, indent=4)
 
 # Example usage
 input_txt_path = 'text/2024-03129.txt'
 output_json_path = '2024-03129.json'
 read_text_and_extract_data(input_txt_path, output_json_path)
-
