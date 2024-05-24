@@ -22,14 +22,14 @@ def extract_info(text, example):
             model="claude-3-sonnet-20240229",
             max_tokens=4000,
             temperature=0,
-            system=f"create only a valid JSON object based only on the provided text. Always use double-quotes for every key and value. No yapping, no hallucinations.",
+            system=f"create only valid JSON objects based on the provided text and example. Do not include any additional text or explanation. Always use double-quotes for every key and value. No yapping, no hallucinations.",
             messages=[
                 {
                     "role": "user",
                     "content": [
                         {
                             "type": "text",
-                            "text": f"Extract all Tangible Gifts contained in {text} into individual JSON objects with no text before or after the object based on {example}. Do NOT include the example in the results and do NOT group any gifts together into a list. Remove any linebreaks or similar whitespace characters that aren't literal spaces. Don't repeat any gifts."
+                            "text": f"Extract all Tangible Gifts contained in the following text into individual JSON objects based on this example: {example}\n\n{text}"
                         }
                     ]
                 }
