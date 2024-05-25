@@ -1,0 +1,5 @@
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the text:
+
+{"name_and_title": "Honorable Condoleezza Rice, Secretary of State of the United States", "gift_description": "Not provided", "received": "2007-01-05", "estimated_value": "Not provided", "disposition": "Not provided", "foreign_donor": "The Custodian of the Two Holy Mosques King Abdullah Bin Abdul Aziz Al Saud, King of the Kingdom of Saudi Arabia", "circumstances": "Not provided"}
+

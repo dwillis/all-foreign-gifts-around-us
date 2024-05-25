@@ -102,6 +102,9 @@ def save_failed_extractions_to_file(json_file_path, failed_extractions):
 
 # Example usage
 
-input_txt_path = 'text/2024-03129.txt'
-output_json_path = 'json/2024-03129.json'
-read_text_and_extract_data(input_txt_path, output_json_path)
+files = ["E8-29759", "E9-969", "E9-15022", "2011-794", "2011-6457", "2013-09945", "2013-12468", "2013-21264", "2014-26782", "2015-29897", "2016-24481", "2018-00365", "2019-04063", "2020-30722", "2021-16751", "2022-07641", "2023-03806"]
+
+for file in files:
+    input_txt_path = f"text/{file}.txt"
+    output_json_path = f"json/{file}.json"
+    read_text_and_extract_data(input_txt_path, output_json_path)
