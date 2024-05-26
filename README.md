@@ -4,9 +4,9 @@ This project aims to extract structured data from unstructured text published in
 
 ## Overview
 
-The Federal Register is the official journal of the United States government, which publishes various notices, rules, and regulatory information. Among these publications are annual reports detailing gifts received by U.S. government officials from foreign sources.
+The Federal Register is the official journal of the United States government, which publishes various notices, rules, and regulatory information. Among these publications are annual reports detailing gifts received by U.S. government officials from foreign sources. Some presidential administrations are [better than others](https://oversightdemocrats.house.gov/news/press-releases/oversight-democrats-release-evidence-showing-trump-first-family-failed-to) about reporting these gifts. The current minimum value of reportable gifts is [$480](https://www.gsa.gov/policy-regulations/policy/personal-property-policy-overview/special-programs/foreign-gifts).
 
-This project uses a Large Language Model (LLM), specifically Claude 3 Sonnet, to extract structured information from these unstructured text reports and convert it into JSON format. The JSON data can then be used for further analysis, visualization, or integration with other systems.
+This project uses a Large Language Model (LLM), specifically Claude 3 Sonnet, to extract structured information from these unstructured text reports and convert it into JSON format. The [JSON data](https://raw.githubusercontent.com/dwillis/all-foreign-gifts-around-us/main/combined.json) can then be used for further analysis, visualization, or integration with other systems.
 
 ## Data Source
 
