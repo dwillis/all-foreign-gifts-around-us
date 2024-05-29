@@ -32159,12 +32159,9 @@
         ],
         "foreign_donor": "The Honorable Y.S. Rajasekhara Reddy, Chief Minister Andhra Pradesh, Republic of India. The Honorable Rameshwar Thakur, Governor of Andhra Pradesh, Republic of India",
         "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government",
-        "donor_name_1": "Y.S. Rajasekhara Reddy",
-        "donor_title_1": "Chief Minister Andhra Pradesh",
-        "donor_country_1": "Republic of India",
-        "donor_name_2": "Rameshwar Thakur",
-        "donor_title_2": "Governor of Andhra Pradesh",
-        "donor_country_2": "Republic of India"
+        "donor_name": "Y.S. Rajasekhara Reddy",
+        "donor_title": "Chief Minister Andhra Pradesh",
+        "donor_country": "Republic of India"
     },
     {
         "name_and_title": "President",
