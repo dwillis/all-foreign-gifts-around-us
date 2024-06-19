@@ -79,12 +79,12 @@ I ended up doing a couple of more extraction tasks on the JSON it produced so th
 
 ![Final](final_output.png)
 
-Next year, when the federal government publishes its latest update of these gifts, I can grab that PDF, turn it into text and extract the data. It might take me 10 minutes to clean things up, and then I'll have even more data. You can see all of the scripts and data [here](https://github.com/dwillis/all-foreign-gifts-around-us).
+The actual data file is [here](https://raw.githubusercontent.com/dwillis/all-foreign-gifts-around-us/main/combined_json_with_both_names.json). Next year, when the federal government publishes its latest update of these gifts, I can grab that PDF, turn it into text and extract the data. It might take me 10 minutes to clean things up, and then I'll have even more data. You can see all of the scripts and data [here](https://github.com/dwillis/all-foreign-gifts-around-us).
 
 You may not need a full pipeline like this. You might just need to work on a single PDF or text file. Don't let that stop you from trying out these tools. Find the process that works for you.
 
 ## Links
 
-* Anthropic: home to the Claude models
-* Groq: a service that provides access to multiple LLMs. Web-based and very fast, but also can do API stuff.
-* Jan: a Mac OS app that you can use to run models locally (helps if you have a recent Mac computer)
+* [Anthropic](https://console.anthropic.com): home to the Claude models
+* [Groq](https://groq.com): a service that provides access to multiple LLMs. Web-based and very fast, but also can do API stuff.
+* [Jan](https://jan.ai/): a Mac OS app that you can use to run models locally (helps if you have a recent Mac computer)
