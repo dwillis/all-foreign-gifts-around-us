@@ -11,7 +11,7 @@ Lots of government information _should_ be data, but doesn't come in that format
 * Spending a lot of time trying to correctly copy and paste information from one format to another
 * Literally re-typing stuff that has already been typed!
 * Limiting reporting to anecdotes, not data
-* Regular expressions! (Now you have two problems)
+* Regular expressions! ([Now you have two problems](https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/))
 
 The worst part is that you can see how this information should be structured. Getting there is another matter.
 
