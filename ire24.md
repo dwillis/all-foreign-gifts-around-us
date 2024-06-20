@@ -23,7 +23,7 @@ Clearly this is structured information, but the fact that the text wraps over to
 
 ## A Large Language Model Solution
 
-One thing that most LLMs are pretty good at is taking information in one context and putting it into another one. That includes translation, switching language style/meter/tone and even reproducing original text in another's voice (try this with Dr. Seuss!). That ability extends to restructuring data like the file from above. Given the proper prompts and source material, an LLM should be able to produce something like this:
+One thing that most LLMs are pretty good at is taking information in one context and putting it into another one. That includes translation, switching language style/meter/tone and even reproducing original text in another voice (try this with Dr. Seuss!). That ability extends to restructuring data like the file from above. Given the proper prompts and source material, an LLM should be able to produce something like this:
 
 ![Extracted](extracted_output.png)
 
