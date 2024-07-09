@@ -1,0 +1,379 @@
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the provided text:
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Vase with floral pattern", "received": "2019-01-27", "estimated_value": "680.00", "disposition": "Transferred to the National Archives and Records Administration", "foreign_donor": "His Excellency Liu He, Vice Premier of the People's Republic of China", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Binoculars", "received": "2019-02-20", "estimated_value": "1192.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Sebastian Kurz, Chancellor of the Republic of Austria", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Vase displaying the Statue of Liberty on one side and Ha Long Bay on the other", "received": "2019-02-26", "estimated_value": "440.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Nguyen Xuan Phuc, Prime Minister of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Ceramic dragon head", "received": "2019-02-27", "estimated_value": "1590.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Nguyen Phu Trong, President of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "CZ 75 9mm pistol", "received": "2019-03-06", "estimated_value": "710.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Andrew Babis, Prime Minister of the Czech Republic", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Crystal bowl", "received": "2019-03-13", "estimated_value": "2700.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Brazilian hardwood bench carved to resemble a jaguar", "received": "2019-03-18", "estimated_value": "1175.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Jair Bolsonaro, President of the Federative Republic of Brazil", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Set of five commemorative coins issued by the Central Bank of The Bahamas", "received": "2019-03-22", "estimated_value": "700.00", "disposition": "Transferred to NARA", "foreign_donor": "The Right Honorable Hubert Minnis, Prime Minister of the Commonwealth of The Bahamas", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Brown leather-bound book of Hebrew songs", "received": "2019-03-25", "estimated_value": "500.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Benjamin Netanyahu, Prime Minister of the State of Israel", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Painting of President Donald J. Trump on dual pane glass", "received": "2019-04-01", "estimated_value": "5250.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Nguyen Phu Trong, President of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects extracted from the text:
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Large double frame carved from black stone with image of President Donald J. Trump in precious metal on one side and the coat of arms of Egypt on the reverse", "received": "2019-04-09", "estimated_value": "4450.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Abdel Fattah El-Sisi, President of the Arab Republic of Egypt", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Four panel screen with paintings of native wildlife", "received": "2019-04-11", "estimated_value": "1339.99", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Moon Jae-in, President of the Republic of Korea", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Exclusively designed pen set and abridged first-edition copy of The Second World War by Winston S. Churchill", "received": "2019-06-05", "estimated_value": "1050.00", "disposition": "Transferred to NARA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Gold, onyx, emerald and diamond statue of an Arabian oryx", "received": "2019-07-09", "estimated_value": "6300.00", "disposition": "Transferred to NARA", "foreign_donor": "His Highness Sheikh Tamim Bin Hamad Al-Thani, Amir of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Statue of the Grand Maitreya and pure cashmere blanket with embroidered cover", "received": "2019-07-31", "estimated_value": "1550.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Khaltmaagiin Battulga, President of Mongolia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Horus collar adorned with gold and jewels", "received": "2019-08-01", "estimated_value": "2940.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Abdel Fattah El-Sisi, President of the Arab Republic of Egypt", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Bronze sculpture of an Arabian horse", "received": "2019-09-17", "estimated_value": "7200.00", "disposition": "Transferred to NARA", "foreign_donor": "His Royal Highness Prince Salman bin Hamad Al-Khalifa, Crown Prince, Deputy Supreme Commander, and First Deputy Prime Minister of the Kingdom of Bahrain", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Brass sculpture depicting the Bodhi tree of the Sri Mahabodi Temple", "received": "2019-09-17", "estimated_value": "970.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Narendra Modi, Prime Minister of the Republic of India", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Replica of the ''Bull Headed Lyre'' inside a glass presentation case and statue of a crescent moon", "received": "2019-09-24", "estimated_value": "1820.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Barham Salih, President of the Republic of Iraq", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Bronze sculpture of cocoa leaves and traditional harvesting equipment", "received": "2019-09-30", "estimated_value": "520.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Daniel Kablan Duncan, Vice President of the Republic of Côte d'Ivoire", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Turkish glass candle holder with filigree in gold", "received": "2019-11-14", "estimated_value": "580.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Recep Tayyip Erdoğan, President of the Republic of Turkey", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Framed photograph of President Donald J. Trump and First Lady Melania Trump", "received": "2019-11-08", "estimated_value": "470.00", "disposition": "Transferred to NARA", "foreign_donor": "The Honorable Scott Morrison, MP, Prime Minister of Australia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Donald J. Trump, President of the United States", "gift_description": "Ottoman Empire rifle", "received": "2019-11-25", "estimated_value": "8500.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Boyko Borissov, Prime Minister of the Republic of Bulgaria", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Melania Trump, First Lady of the United States", "gift_description": "White gold diamond earrings", "received": "2019-03-07", "estimated_value": "470.00", "disposition": "Transferred to NARA", "foreign_donor": "Mrs. Monika Babisova, Spouse of the Prime Minister of the Czech Republic", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Melania Trump, First Lady of the United States", "gift_description": "Ornamental Japanese lacquer box and a signed photograph of the Empress", "received": "2019-05-27", "estimated_value": "1130.00", "disposition": "Transferred to NARA", "foreign_donor": "Her Majesty The Empress of Japan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Melania Trump, First Lady of the United States", "gift_description": "Pearl earrings", "received": "2019-05-27", "estimated_value": "2600.00", "disposition": "Transferred to NARA", "foreign_donor": "Mrs. Akie Abe, Spouse of the Prime Minister of Japan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects extracted from the text:
+
+{"name_and_title": "Mrs. Melania Trump, First Lady of the United States", "gift_description": "Specially commissioned sterling silver jewelry box with enamel lid", "received": "2019-06-05", "estimated_value": "390.00", "disposition": "Transferred to NARA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Melania Trump, First Lady of the United States", "gift_description": "Porcelain vase", "received": "2019-07-09", "estimated_value": "2300.00", "disposition": "Transferred to NARA", "foreign_donor": "His Highness Sheikh Tamim Bin Hamad Al Thani, Amir of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Melania Trump, First Lady of the United States", "gift_description": "Framed painting of a nature preserve", "received": "2019-07-31", "estimated_value": "450.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Khaltmaagiin Buttulga, President of Mongolia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Melania Trump, First Lady of the United States", "gift_description": "Pearl earrings", "received": "2019-09-20", "estimated_value": "700.00", "disposition": "Transferred to NARA", "foreign_donor": "Mrs. Jennifer Morrison, Spouse of the Prime Minister of Australia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Jared Kushner, Assistant to the President and Senior Advisor", "gift_description": "Framed photograph with signature", "received": "2019-06-05", "estimated_value": "2830.00", "disposition": "Transferred to NARA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Jared Kushner, Assistant to the President and Senior Advisor", "gift_description": "Framed photograph with signature", "received": "2019-06-05", "estimated_value": "1690.00", "disposition": "Transferred to NARA", "foreign_donor": "His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Jared Kushner, Assistant to the President and Senior Advisor", "gift_description": "Porcelain vase", "received": "2019-06-30", "estimated_value": "700.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Moon Jae-in, President of the Republic of Korea", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Jared Kushner, Assistant to the President and Senior Advisor", "gift_description": "Clock engraved with the coat of arms of Bahrain", "received": "2019-09-17", "estimated_value": "3200.00", "disposition": "Transferred to NARA", "foreign_donor": "His Royal Highness Prince Salman bin Hamad Al-Khalifa, Crown Prince, Deputy Supreme Commander, and First Deputy Prime Minister of the Kingdom of Bahrain", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Jared Kushner, Assistant to the President and Senior Advisor", "gift_description": "Sterling silver candleholder", "received": "2019-09-22", "estimated_value": "650.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Narendra Modi, Prime Minister of the Republic of India", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Mick Mulvaney, Assistant to the President and Acting Chief of Staff and Director of the Office of Management and Budget", "gift_description": "Footed porcelain bowl displaying the emblem of Vietnam", "received": "2019-04-01", "estimated_value": "440.00", "disposition": "Transferred to General Services Administration (GSA)", "foreign_donor": "His Excellency Nguyen Xuan Phuc, Prime Minister of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable John Bolton, Assistant to the President and National Security Advisor", "gift_description": "Footed porcelain bowl displaying the emblem of Vietnam", "received": "2019-04-01", "estimated_value": "440.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Excellency Nguyen Xuan Phuc, Prime Minister of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable John Bolton, Assistant to the President and National Security Advisor", "gift_description": "Framed photograph with signatures", "received": "2019-06-10", "estimated_value": "2830.00", "disposition": "Transferred to GSA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland and His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Kellyanne Conway, Assistant to the President and Senior Counselor", "gift_description": "Framed photograph with signatures", "received": "2019-06-10", "estimated_value": "2830.00", "disposition": "Purchased", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland and His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Sarah Sanders, Assistant to the President and White House Press Secretary", "gift_description": "Footed porcelain bowl displaying the emblem of Vietnam", "received": "2019-04-01", "estimated_value": "440.00", "disposition": "Transferred to GSA", "foreign_donor": "His Excellency Nguyen Xuan Phuc, Prime Minister of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the provided text:
+
+{"name_and_title": "The Honorable Sarah Sanders, Assistant to the President and White House Press Secretary", "gift_description": "Framed photograph with signatures", "received": "2019-06-10", "estimated_value": "2830.00", "disposition": "Pending transfer to GSA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland and His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Stephen Miller, Assistant to the President and Senior Advisor for Policy", "gift_description": "Framed photograph with signatures", "received": "2019-06-10", "estimated_value": "2830.00", "disposition": "Transferred to GSA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland and His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Dan Scavino, Assistant to the President and Senior Advisor for Digital Strategy", "gift_description": "Framed photograph with signatures", "received": "2019-06-10", "estimated_value": "2830.00", "disposition": "Transferred to GSA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland and His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Lindsay Reynolds, Assistant to the President and Chief of Staff to the First Lady", "gift_description": "Framed photograph with signatures", "received": "2019-06-10", "estimated_value": "2830.00", "disposition": "Transferred to GSA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland and His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Stephanie Grisham, Deputy Assistant to the President and Deputy Chief of Staff for Communications to the First Lady", "gift_description": "Framed photograph with signatures", "received": "2019-06-10", "estimated_value": "2830.00", "disposition": "Transferred to GSA", "foreign_donor": "Her Majesty The Queen of the United Kingdom of Great Britain and Northern Ireland and His Royal Highness the Duke of Edinburgh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Allison Hooker, Deputy Assistant to the President and Senior Director for Asian Affairs", "gift_description": "Footed porcelain bowl displaying the emblem of Vietnam", "received": "2019-04-01", "estimated_value": "440.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Excellency Nguyen Xuan Phuc, Prime Minister of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Matthew Pottinger, Deputy Assistant to the President and Senior Director for Asian Affairs", "gift_description": "Footed porcelain bowl displaying the emblem of Vietnam", "received": "2019-04-01", "estimated_value": "440.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Excellency Nguyen Xuan Phuc, Prime Minister of the Socialist Republic of Vietnam", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Matthew Pottinger, Deputy Assistant to the President and Senior Director for Asian Affairs", "gift_description": "Bottle of Japanese whisky", "received": "2019-05-10", "estimated_value": "8374.00", "disposition": "Pending", "foreign_donor": "His Excellency Suga Yoshihide, Chief Cabinet Secretary of Japan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Lisa Curtis, Deputy Assistant to the President and Senior Director for South & Central Asian Affairs", "gift_description": "Silk scarf and two yards of silk fabric", "received": "2019-02-26", "estimated_value": "670.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Excellency Shavkat Mirziyoyev, President of the Republic of Uzbekistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Lisa Curtis, Deputy Assistant to the President and Senior Director for South & Central Asian Affairs", "gift_description": "Handwoven silk carpet", "received": "2019-07-11", "estimated_value": "9600.00", "disposition": "Pending transfer to GSAs", "foreign_donor": "Major General Bakhodir Kurbanov, Minister of Defense of the Republic of Uzbekistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the provided text:
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "Handwoven carpet", "received": "2018-08-01", "estimated_value": "9700.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Shavkat Mirziyoyev, President of the Republic of Uzbekistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "Robe, book: The Constitution of the State of Kuwait, medallion, and oil rig model", "received": "2018-09-04", "estimated_value": "1240.00", "disposition": "Robe on official display. Book, medallion, and oil rig model—Transferred to NARA", "foreign_donor": "His Highness Sheikh Sabah Al-Ahmed Al-Jaber Al-Sabah, Amir of the State of Kuwait", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "Gold medallion in presentation box", "received": "2018-09-20", "estimated_value": "4040.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Khurelsukh Ukhnaagiin, Prime Minister of Mongolia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "Two large pieces of handmade batik", "received": "2018-11-14", "estimated_value": "640.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Joko Widodo, President of the Republic of Indonesia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "Silver Buccellati picture frame with ornate detailing", "received": "2018-11-28", "estimated_value": "1400.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Salem Abdullah Al-Jaber Al-Sabah, Ambassador of the State of Kuwait to the United States", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "Meteart Meteorite cufflinks", "received": "2019-05-29", "estimated_value": "689.99", "disposition": "Transferred to NARA", "foreign_donor": "The Right Honorable Justin Trudeau, PC, MP, Prime Minister of Canada", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "R.M. Williams classic craftsman boots", "received": "2019-10-09", "estimated_value": "545.00", "disposition": "Transferred to NARA", "foreign_donor": "The Honorable Scott Morrison, MP, Prime Minister of Australia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pence, Vice President of the United States", "gift_description": "Gold-plated Hagia Sophia Virgin mosaic vase", "received": "2019-10-17", "estimated_value": "1300.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Recep Tayyip Erdoğan, President of the Republic of Turkey", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Karen Pence, Second Lady of the United States", "gift_description": "Set of wooden geometric candle holders", "received": "2018-06-25", "estimated_value": "410.00", "disposition": "Transferred to NARA", "foreign_donor": "Her Majesty Queen Rania Al Abdullah, Queen of the Hashemite Kingdom of Jordan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Karen Pence, Second Lady of the United States", "gift_description": "Christofle silver frame with picture of Mrs. Pence receiving Kuwait Humanitarian Award", "received": "2018-11-02", "estimated_value": "400.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Salem Abdullah Al-Jaber Al-Sabah, Ambassador of the State of Kuwait to the United States", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Karen Pence, Second Lady of the United States", "gift_description": "Two gold-tone leaf place card holders, Singapore Botanical Garden framed print, and clutch", "received": "2018-11-16", "estimated_value": "1200.00", "disposition": "Place card holders and print on official display. Clutch—Transferred to NARA", "foreign_donor": "His Excellency Lee Hsien Loong, Prime Minister of the Republic of Singapore", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Karen Pence, Second Lady of the United States", "gift_description": "Handwoven carpet", "received": "2019-04-23", "estimated_value": "6600.00", "disposition": "Transferred to NARA", "foreign_donor": "His Excellency Mohammad Ashraf Ghani, President of the Islamic Republic of Afghanistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the provided text:
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Book: Above Two Seas and sterling silver letter opener", "received": "2019-01-15", "estimated_value": "1399.00", "disposition": "Transferred to GSA", "foreign_donor": "His Royal Highness Prince Salman bin Hamad Al-Khalifa, Crown Prince, Deputy Supreme Commander, and First Deputy Prime Minister of the Kingdom of Bahrain", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Blue suitcase containing formal male and female dishdashas and perfumes", "received": "2019-03-20", "estimated_value": "915.00", "disposition": "On official display at the National Museum of American Diplomacy", "foreign_donor": "His Highness Sheikh Sabah Al-Ahmed Al-Jaber Al-Sabah, Amir of the State of Kuwait", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Eagle statue", "received": "2019-03-28", "estimated_value": "1670.00", "disposition": "Transferred to GSA", "foreign_donor": "His Royal Highness Prince Khalid bin Salman Al Saud, Deputy Minister of Defense of the Kingdom of Saudi Arabia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Water droplet sculpture", "received": "2019-04-18", "estimated_value": "1100.00", "disposition": "On official display at the National Museum of American Diplomacy", "foreign_donor": "His Highness Sheikh Abdullah bin Zayed Al Nahyan, Minister of Foreign Affairs and International Cooperation of the United Arab Emirates", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Bottle of Japanese whisky", "received": "2019-06-24", "estimated_value": "5800.00", "disposition": "Unknown", "foreign_donor": "The Government of Japan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Lapis bowl and lapis tray", "received": "2019-06-27", "estimated_value": "1030.00", "disposition": "On official display at the National Museum of American Diplomacy", "foreign_donor": "Mr. Hamid Karzai, Former President of the Islamic Republic of Afghanistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Silk Samarkand-Bukhara style carpet", "received": "2019-07-14", "estimated_value": "9600.00", "disposition": "Transferred to GSA", "foreign_donor": "His Excellency Shavkat Mirziyoyev, President of the Republic of Uzbekistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Four-piece metal artwork", "received": "2019-09-01", "estimated_value": "440.00", "disposition": "Transferred to GSA", "foreign_donor": "His Highness Sheikh Mohammad bin Zayed Al Nahyan, Crown Prince of the United Arab Emirates", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "William and Son clock", "received": "2019-09-17", "estimated_value": "1375.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Royal Highness Prince Salman bin Hamad Al-Khalifa, Crown Prince, Deputy Supreme Commander, and First Deputy Prime Minister of the Kingdom of Bahrain", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Framed print of city of Pacentro", "received": "2019-10-01", "estimated_value": "425.00", "disposition": "Purchased", "foreign_donor": "The Honorable Guido Angelilli, Mayor of Pacentro, Italian Republic", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Five books of Pope Francis' declarations, ceramic tile of the Gardens at the Vatican, Book of Human Fraternity Meeting document", "received": "2019-10-04", "estimated_value": "490.00", "disposition": "On official display at the National Museum of American Diplomacy", "foreign_donor": "His Holiness Pope Francis", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Silver-plated falcon statue", "received": "2019-11-05", "estimated_value": "590.00", "disposition": "On official display at the National Museum of American Diplomacy", "foreign_donor": "His Excellency Adel Al Jubeir, Minister of State for Foreign Affairs of the Kingdom of Saudi Arabia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Michael R. Pompeo, Secretary of State of the United States", "gift_description": "Large carpet", "received": "2019-11-22", "estimated_value": "9800.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Highness Sheikh Abdullah bin Zayed Al Nahyan, Minister of Foreign Affairs and International Cooperation of the United Arab Emirates", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects extracted from the text:
+
+{"name_and_title": "Mrs. Susan Pompeo, Spouse of the Secretary of State of the United States", "gift_description": "Candle set", "received": "2019-01-08", "estimated_value": "525.00", "disposition": "Transferred to GSA", "foreign_donor": "Their Majesties King Abdullah II ibn Al Hussein and Queen Rania Al Abdullah of the Hashemite Kingdom of Jordan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Susan Pompeo, Spouse of the Secretary of State of the United States", "gift_description": "Silver and pearl collar necklace", "received": "2019-01-10", "estimated_value": "1925.00", "disposition": "On official display at the National Museum of American Diplomacy", "foreign_donor": "Major General Abbas Kamel, Director of the Egyptian General Intelligence Service", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mrs. Susan Pompeo, Spouse of the Secretary of State of the United States", "gift_description": "Roman glass necklace and earrings and Michal Negrin scarf", "received": "2019-03-21", "estimated_value": "490.00", "disposition": "Purchased", "foreign_donor": "Mrs. Sara Netanyahu, Spouse of the Prime Minister of the State of Israel", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Sean Lawler, Chief of Protocol of the United States", "gift_description": "Ruby cufflinks", "received": "2019-03-06", "estimated_value": "1290.00", "disposition": "Transferred to GSA", "foreign_donor": "Mrs. Barbora Loudova, Head of the Protocol Department and Foreign Relations of the Office of the Government of the Czech Republic", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Thomas Shannon, Under Secretary of State for Political Affairs", "gift_description": "Swarovski crystal phoenix", "received": "2018-03-08", "estimated_value": "1700.00", "disposition": "Transferred to GSA", "foreign_donor": "Government of the Republic of Uzbekistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mr. Sahar Khoury-Kincannon, Near East and Africa Political Advisor", "gift_description": "Hermes silk scarf", "received": "2019-02-04", "estimated_value": "500.00", "disposition": "Transferred to GSA", "foreign_donor": "Mr. Ahmed Krayyem, Chairman of the Salahuddin Local Council, Republic of Iraq", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Ms. Nicole Fasano, Protocol Officer", "gift_description": "Large carpet", "received": "2019-02-14", "estimated_value": "780.00", "disposition": "Transferred to GSA", "foreign_donor": "The Government of the Islamic Republic of Afghanistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Kenneth I. Juster, U.S. Ambassador to the Republic of India", "gift_description": "Red music box and silver picture frame", "received": "2019-02-25", "estimated_value": "2180.00", "disposition": "Transferred to GSA", "foreign_donor": "Mr. Mukesh Dhirubhai Ambani, Chairman and Managing Director, Republic of India", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mr. George P. Kent, Deputy Assistant Secretary of State, European and Eurasian Bureau", "gift_description": "Silver jug, three cups, and one small plate", "received": "2019-05-01", "estimated_value": "500.00", "disposition": "On official display", "foreign_donor": "Mr. Shamsaddin Khanbabeyev, Executive Committee Khachmaz, Khahmaz, Republic of Azerbaijan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Ms. Natalie Baker, Chargé d'affaires, Libya External Office", "gift_description": "Omega watch", "received": "2019-08-05", "estimated_value": "4083.00", "disposition": "Transferred to GSA", "foreign_donor": "Counsel of the State of Libya", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Ms. Eugenia Davis, United Arab Emirates Desk Officer", "gift_description": "Mozart ballpoint pen and small tray", "received": "2019-09-10", "estimated_value": "515.00", "disposition": "Transferred to GSA", "foreign_donor": "His Excellency Shayma Gorgash, Deputy Chief of Mission of the United Arab Emirates Embassy", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mr. Kyle Maxwell, Senior Protocol Officer", "gift_description": "Baume & Mercier watch", "received": "2019-09-16", "estimated_value": "790.00", "disposition": "Transferred to GSA", "foreign_donor": "His Royal Highness Prince Salman bin Hamad Al-Khalifa, Crown Prince, Deputy Supreme Commander, and First Deputy Prime Minister of the Kingdom of Bahrain", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Ms. Jennifer Wham, Protocol Officer", "gift_description": "Louis Erard watch", "received": "2019-09-16", "estimated_value": "790.00", "disposition": "Transferred to GSA", "foreign_donor": "His Royal Highness Prince Salman bin Hamad Al-Khalifa, Crown Prince, Deputy Supreme Commander, and First Deputy Prime Minister of the Kingdom of Bahrain", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable David Hale, Under Secretary of State for Political Affairs", "gift_description": "Marble mantle clock, two books, and jeweled robe with fur collar and matching fur hat", "received": "2019-09-01", "estimated_value": "990.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Excellency Beibut Atamkulov, Minister of Foreign Affairs of the Republic of Kazakhstan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects extracted from the text based on the provided example:
+
+{"name_and_title": "The Honorable David Hale, Under Secretary of State for Political Affairs", "gift_description": "Mont Blanc pen and leather notebook", "received": "2019-12-10", "estimated_value": "490.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Excellency Elin Suleymanov, Ambassador of the Republic of Azerbaijan to the United States", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Mark L. Wolf, Senior District Judge, United States District Court for the District of Massachusetts", "gift_description": "GIFT OF TRAVEL: Lodging, Meals, and Transportation (Cali, Colombia)", "received": "2019-10-13", "estimated_value": "400.00", "disposition": "", "foreign_donor": "Ministry of Foreign Affairs of the Republic of Colombia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Mark L. Wolf, Senior District Judge, United States District Court for the District of Massachusetts", "gift_description": "GIFT OF TRAVEL: Lodging, Meals, and Transportation (Kyiv, Ukraine)", "received": "2019-11-10", "estimated_value": "593.00", "disposition": "", "foreign_donor": "European Union Anti-Corruption Initiative", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Leonard P. Stark, Chief District Judge, United States District Court for the District of Delaware", "gift_description": "GIFT OF TRAVEL: Travel, Meals, and Entertainment (Seoul, Republic of Korea)", "received": "2019-10-18", "estimated_value": "500.00", "disposition": "", "foreign_donor": "Patent Court, Republic of Korea", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Leonard P. Stark, Chief District Judge, United States District Court for the District of Delaware", "gift_description": "GIFT OF TRAVEL: Lodging, Meals, and Transportation (Toronto, Canada)", "received": "2019-11-13", "estimated_value": "1151.61", "disposition": "", "foreign_donor": "Federal Court of Canada", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Women's Rolex", "received": "2017-05-31", "estimated_value": "2000.00", "disposition": "Purchased by recipient", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "A bottle of red wine, two boxes of dates, and four bottles of olive oil", "received": "2017-11-27", "estimated_value": "1100.00", "disposition": "Disposed", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}  
+
+{"name_and_title": "An Agency Employee", "gift_description": "Women's Rolex", "received": "2018-05-26", "estimated_value": "8000.00", "disposition": "Disposed", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Men's Rolex", "received": "2018-05-26", "estimated_value": "8000.00", "disposition": "Disposed", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Men's Rado watch and women's Rado watch", "received": "2018-05-30", "estimated_value": "3500.00", "disposition": "Disposed", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Cash", "received": "2018-09-19", "estimated_value": "600.00", "disposition": "Pending transfer to the Department of Treasury", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the provided text:
+
+{"name_and_title": "An Agency Employee", "gift_description": "Amouage cologne and perfume", "received": "2019-01-03", "estimated_value": "1500.00", "disposition": "Transferred to GSA", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Two stuffed bears, a vest, a Ralph Lauren sweater, shirt, and hoodie, and a Marc Jacobs shirt", "received": "2019-01-07", "estimated_value": "525.00", "disposition": "Pending transfer to GSA", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Tag Heuer women's watch", "received": "2019-02-04", "estimated_value": "1650.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Cash", "received": "2019-02-13", "estimated_value": "18100.00", "disposition": "Pending transfer to the Department of Treasury", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Louis Vuitton wallet and two bottles of cologne", "received": "2019-02-13", "estimated_value": "1400.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Calvin Klein women's watch and box of frankincense", "received": "2019-02-18", "estimated_value": "450.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Tactical watch, spa product, boxes of dates and sweets", "received": "2019-03-05", "estimated_value": "725.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Baku wool on cotton carpet", "received": "2019-03-14", "estimated_value": "440.00", "disposition": "Pending purchase by the recipient", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Apple watch", "received": "2019-03-21", "estimated_value": "399.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Vaughn Bishop, Deputy Director, Central Intelligence Agency", "gift_description": "Hand-carved table and chairs", "received": "2019-04-27", "estimated_value": "500.00", "disposition": "Pending transfer to GSA", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Certina watch", "received": "2019-04-30", "estimated_value": "750.00", "disposition": "Official Use", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Gina Haspel, Director of the Central Intelligence Agency", "gift_description": "Black enamel glass vase", "received": "2019-05-16", "estimated_value": "400.00", "disposition": "On official display", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Cash", "received": "2019-05-16", "estimated_value": "1053.00", "disposition": "Pending transfer to the Department of Treasury", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Ebel watch", "received": "2019-06-09", "estimated_value": "4000.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Ebel watch", "received": "2019-06-09", "estimated_value": "4000.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Louis Erard watch", "received": "2019-06-11", "estimated_value": "700.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Louis Erard watch", "received": "2019-06-11", "estimated_value": "700.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the provided text:
+
+{"name_and_title": "An Agency Employee", "gift_description": "Omega watch", "received": "2019-06-16", "estimated_value": "3000.00", "disposition": "Disposed", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "iPhone 7S", "received": "2019-06-30", "estimated_value": "500.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Pewter eagle statue", "received": "2019-07-03", "estimated_value": "580.00", "disposition": "Pending disposal", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Carpet", "received": "2019-07-09", "estimated_value": "580.00", "disposition": "Pending disposal 25", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Watch", "received": "2019-07-10", "estimated_value": "500.00", "disposition": "Pending disposal 26", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Garmin watch", "received": "2019-07-12", "estimated_value": "750.00", "disposition": "Pending disposal 27", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Mont Blanc pen", "received": "2019-07-15", "estimated_value": "4000.00", "disposition": "Pending disposal 28", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Original painting", "received": "2019-07-16", "estimated_value": "4000.00", "disposition": "On official display", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Rolex watch", "received": "2019-09-23", "estimated_value": "7000.00", "disposition": "Pending disposal 29", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "The Honorable Gina Haspel, Director of the Central Intelligence Agency", "gift_description": "Hermes silk shawl", "received": "2019-10-28", "estimated_value": "500.00", "disposition": "Transferred to GSA", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "The Honorable Gina Haspel, Director of the Central Intelligence Agency", "gift_description": "Glass vase", "received": "2019-11-06", "estimated_value": "500.00", "disposition": "On official display", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Gift card", "received": "2019-11-09", "estimated_value": "400.00", "disposition": "Pending transfer to GSA 30", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Carpet", "received": "2019-11-14", "estimated_value": "500.00", "disposition": "On official display", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+{"name_and_title": "An Agency Employee", "gift_description": "Cash", "received": "2019-12-19", "estimated_value": "10000.00", "disposition": "Pending transfer to the Department of Treasury 31", "foreign_donor": "5 U.S.C. 7342(f)(4)", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government."}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the provided text:
+
+{"name_and_title": "The Honorable William P. Barr, Attorney General of the United States", "gift_description": "Hand-knotted carpet", "received": "2019-06-21", "estimated_value": "500.00", "disposition": "Transferred to GSA", "foreign_donor": "His Excellency Dr. Ali Bin Fetais Al Marri, Attorney General of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mr. Brian Coneely, Acting Regional Director, Drug Enforcement Administration", "gift_description": "Bentley watch", "received": "2018-06-27", "estimated_value": "5750.00", "disposition": "Transferred to GSA", "foreign_donor": "Mr. Karim Massimov, Chairman of the National Security Committee of the Republic of Kazakhstan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Deputy Assistant Attorney General Bruce C. Swartz", "gift_description": "Leather bag", "received": "2019-01-01", "estimated_value": "400.00", "disposition": "Transferred to GSA", "foreign_donor": "Government of the United Arab Emirates", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Deputy Assistant Attorney General Bruce C. Swartz", "gift_description": "Pearl necklace", "received": "2019-01-01", "estimated_value": "500.00", "disposition": "Transferred to GSA", "foreign_donor": "Government of the People's Republic of Bangladesh", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Deputy Assistant Attorney General Bruce C. Swartz", "gift_description": "Gray Burberry scarf", "received": "2019-01-01", "estimated_value": "400.00", "disposition": "Transferred to GSA", "foreign_donor": "Government of the People's Republic of China", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Deputy Assistant Attorney General Bruce C. Swartz", "gift_description": "Blue Burberry scarf", "received": "2019-01-01", "estimated_value": "400.00", "disposition": "Transferred to GSA", "foreign_donor": "Government of the United Arab Emirates", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mr. Todd C. Smith, Country Attaché, Dubai Country Office", "gift_description": "Fendi watch", "received": "2018-08-05", "estimated_value": "975.00", "disposition": "Transferred to GSA", "foreign_donor": "Mr. Ahmed Bin Khalifa Al-Kuwari, Director General of Drug Enforcement of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Kristine L. Svinicki, Chairman, US Nuclear Regulatory Commission", "gift_description": "Portrait of Sheikh Zayed Bin Sultan Al Nahyan", "received": "2019-12-23", "estimated_value": "700.00", "disposition": "On Official Display at the Office of International Programs at the US Nuclear Regulatory Commission Headquarters", "foreign_donor": "Sheikh Zayed Bin Sultan Al Nahyan, Federal Authority for Nuclear Regulation, United Arab Emirates", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the text:
+
+{"name_and_title": "The Honorable Steven T. Mnuchin, Secretary of the Treasury", "gift_description": "Carpet", "received": "2019-06-20", "estimated_value": "499.99", "disposition": "On official display", "foreign_donor": "His Excellency Dr. Ali Bin Fetais Al Marri, Attorney General of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Steven T. Mnuchin, Secretary of the Treasury", "gift_description": "Persian silk carpet", "received": "2019-11-14", "estimated_value": "2000.00", "disposition": "Pending Transfer to GSA", "foreign_donor": "His Excellency Dr. Ali Bin Fetais Al Marri, Attorney General of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Steven T. Mnuchin, Secretary of the Treasury", "gift_description": "Egyptian paperweights, miniature statue, necklace and ring", "received": "2019-12-20", "estimated_value": "2831.99", "disposition": "Pending Transfer to GSA", "foreign_donor": "Major General Abbas Kamel, Director of the Egyptian General Intelligence Service", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Steven T. Mnuchin, Secretary of the Treasury", "gift_description": "Perfume", "received": "2019-12-20", "estimated_value": "986.12", "disposition": "Pending transfer to GSA", "foreign_donor": "Mr. Lolwah Rashid Al-Khater, State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Marshall Billingslea, Assistant Secretary of the Treasury, Terrorist Financing", "gift_description": "Gold coin", "received": "2019-07-18", "estimated_value": "1085.00", "disposition": "Pending transfer to GSA", "foreign_donor": "Bank Officials of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Marshall Billingslea, Assistant Secretary of the Treasury, Terrorist Financing", "gift_description": "Carpet", "received": "2019-11-22", "estimated_value": "800.00", "disposition": "Pending transfer to GSA", "foreign_donor": "His Excellency Dr. Ali Bin Fetais Al Marri, Attorney General of the State of Qatar", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects extracted from the text:
+
+{"name_and_title": "Mr. Jason Windau, Operations Business Director", "gift_description": "GIFT OF TRAVEL—Peace to Prosperity Conference—Lodging at the Four Seasons, Bahrain", "received": "2019-06-25", "estimated_value": "782.04", "disposition": "Disposition", "foreign_donor": "Government of the Kingdom of Bahrain", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Mr. Christopher L. Hill, Program Director, Division of Graduate Education, National Science Foundation", "gift_description": "GIFT OF TRAVEL—Travel to Egypt", "received": "2019-10-13", "estimated_value": "738.50", "disposition": "Disposition", "foreign_donor": "National Science Centre, Republic of Poland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Nancy Pelosi, Speaker of the House of Representatives", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Amata Coleman Radewagen, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging, meals, and ground transportation for a conference in the Marshall Islands", "received": "2019-03-26", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "Her Excellency Hilda C. Heine, President of the Republic of the Marshall Islands", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Brendan Boyle, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Joseph D. Courtney, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Suzan DelBene, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Brian Higgins, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment and U.S. Governments"}
+
+{"name_and_title": "The Honorable Steven A. Horsford, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment and U.S. Governments"}  
+
+{"name_and_title": "The Honorable Daniel Kildee, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment and U.S. Governments"}
+
+{"name_and_title": "The Honorable John Larson, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment and U.S. Governments"}
+
+{"name_and_title": "The Honorable Richard E. Neal, Member of Congress", "gift_description": "GIFT OF TRAVEL: Lodging at Farmleigh House in Dublin, Ireland", "received": "2019-04-16", "estimated_value": "Unknown", "disposition": "Disposition", "foreign_donor": "His Excellency Leo Varadkar, Prime Minister of Ireland", "circumstances": "Non-acceptance would cause embarrassment and U.S. Governments"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the text:
+
+{"name_and_title": "The Honorable Sherrod Brown, United States Senator", "gift_description": "Silver and lapis ring", "received": "2009-08-23", "estimated_value": "500.00", "disposition": "On official display in the Secretary of the Senate", "foreign_donor": "His Excellency Dr. Sayed Mohammad Amin Fatimie, Minister of Public Health, Islamic Republic of Afghanistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Tammy Duckworth, United States Senator", "gift_description": "Gold-plated commemorative plaque", "received": "2019-07-18", "estimated_value": "150.00", "disposition": "Pending in the Hart Senate Office Building, Room 524 45", "foreign_donor": "Dr. Fadli Zon, Vice Speaker of the House of Representatives, Republic of Indonesia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Tammy Duckworth, United States Senator", "gift_description": "Blue tea set", "received": "2019-10-16", "estimated_value": "300.00", "disposition": "On official display in the Secretary of the Senate", "foreign_donor": "His Excellency Chuan Leekpai, President of the National Assembly and Speaker of the House of Representatives, Kingdom of Thailand", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Tammy Duckworth, United States Senator", "gift_description": "Pearl-colored tea set", "received": "2019-10-16", "estimated_value": "250.00", "disposition": "On official display in the Secretary of the Senate", "foreign_donor": "The Royal Family of the Kingdom of Thailand", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Lindsey Graham, United States Senator", "gift_description": "Silk carpet", "received": "2019-07-23", "estimated_value": "3000.00", "disposition": "On official display in Secretary of the Senate", "foreign_donor": "General Qamar Laved Bajwa, Chief of Army Staff, Islamic Republic of Pakistan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+Failed extraction:
+Here are the JSON objects for the Tangible Gifts extracted from the given text:
+
+{"name_and_title": "The Honorable James E. Risch, United States Senator", "gift_description": "Bottle of Azerbaijani Cognac", "received": "2018-12-20", "estimated_value": "300.00", "disposition": "Pending in the office of the Secretary of the Senate", "foreign_donor": "His Excellency Elin Suleymanov, Ambassador of the Republic of Azerbaijan to the United States", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Mitt Romney, United States Senator", "gift_description": "Wagyu Meat Products", "received": "2019-03-13", "estimated_value": "500.00", "disposition": "Disposed of", "foreign_donor": "His Majesty King Abdullah II ibn Al Hussein, King of the Hashemite Kingdom of Jordan", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "The Honorable Richard C. Shelby, United States Senator", "gift_description": "Set of assorted silver boxes, dishes, and trays", "received": "2019-09-29", "estimated_value": "200.00", "disposition": "On official display in the Secretary of the Senate", "foreign_donor": "His Excellency Nasser Bourita, Minister of Foreign Affairs and International Cooperation of the Kingdom of Morocco", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Ms. Molly Lazio, Policy Analyst, Committee on Foreign Relations", "gift_description": "Sunshine Amouage perfume", "received": "2019-10-08", "estimated_value": "400.00", "disposition": "Pending in the office of the Secretary of the Senate", "foreign_donor": "Mr. Hashim Taher AI Ibrahim, Business Facilitation Director, Port of Duqm Company SAOC, Sultanate of Oman", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
+{"name_and_title": "Dr. Christyl Johnson, Deputy Director for Technology and Research Investments", "gift_description": "Oil painted photo of space", "received": "2019-02-04", "estimated_value": "390.00", "disposition": "On official display", "foreign_donor": "Mr. Nicola Sasanelli, SmartSat CRC Senior Advisor, Australia", "circumstances": "Non-acceptance would cause embarrassment to donor and U.S. Government"}
+
