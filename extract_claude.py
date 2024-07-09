@@ -103,7 +103,7 @@ def save_failed_extractions_to_file(json_file_path, failed_extractions):
 # Example usage
 
 files = [
-    "2024-09344"
+    "2020-03722", "2021-16751", "2022-07641", "2023-03806"
     ]
 
 for file in files:
