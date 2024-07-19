@@ -39,19 +39,57 @@ def extract_donor_details(foreign_donor):
         print(f"Error: Could not parse the response for '{response}' as JSON.")
         return None
 
+def item_exists(item, output_file):
+    try:
+        with open(output_file, 'r') as file:
+            output_data = json.load(file)
+            for existing_item in output_data:
+                if all(item.get(key) == existing_item.get(key) for key in item.keys() if key != 'gift_description'):
+                    return True
+    except (FileNotFoundError, json.JSONDecodeError):
+        return False
+    return False
+
+def append_to_file(item, output_file):
+    try:
+        with open(output_file, 'r+') as file:
+            file.seek(0, 2)  # Move to the end of the file
+            if file.tell() == 0:  # File is empty
+                json.dump([item], file, indent=2)
+            else:
+                file.seek(0)  # Move to the beginning of the file
+                data = json.load(file)
+                data.append(item)
+                file.seek(0)  # Move back to the beginning of the file
+                file.truncate()  # Clear the file content
+                json.dump(data, file, indent=2)
+    except FileNotFoundError:
+        with open(output_file, 'w') as file:
+            json.dump([item], file, indent=2)
+
 def extract_and_merge_donor_details(input_file, output_file):
+    # Read the input file
     with open(input_file, 'r') as file:
-        data = json.load(file)
+        input_data = json.load(file)
 
-    for item in data:
-        foreign_donor = item.get('foreign_donor')
-        if foreign_donor:
-            extracted_details = extract_donor_details(foreign_donor)
-            if extracted_details:
-                item.update(extracted_details)
-
-    with open(output_file, 'w') as file:
-        json.dump(data, file, indent=4)
+    # Process each item in the input data
+    for item in input_data:
+        # Check if the item (excluding gift_description) is already in the output data
+        if not item_exists(item, output_file):
+            print("adding item")
+            foreign_donor = item.get('foreign_donor')
+            if foreign_donor:
+                extracted_details = extract_donor_details(foreign_donor)
+                if extracted_details:
+                    item.update(extracted_details)
+                else:
+                    # If there's an error, add null values
+                    item.update({
+                        "donor_name": None,
+                        "donor_title": None,
+                        "donor_country": None
+                    })
+            append_to_file(item, output_file)
 
 # Example usage
 input_file = 'combined.json'
