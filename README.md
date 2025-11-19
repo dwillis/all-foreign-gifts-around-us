@@ -222,6 +222,80 @@ python src/api/federal_register.py
 - [Contributing Guide](CONTRIBUTING.md) - How to contribute
 - [Improvement Plan](IMPROVEMENT_PLAN.md) - Roadmap and planned features
 
+## Analysis Features
+
+The project includes comprehensive analytical tools to extract insights from the data:
+
+### Command-Line Interface
+
+```bash
+# Get summary statistics
+python src/cli.py stats
+
+# Search for gifts
+python src/cli.py search --keyword "painting" --country "France"
+python src/cli.py search --min-value 5000 --recipient "Biden"
+
+# Show top donors and recipients
+python src/cli.py top-countries --limit 20
+python src/cli.py top-recipients --limit 15
+
+# Find most valuable gifts
+python src/cli.py valuable --limit 10
+
+# Classify gifts by type
+python src/cli.py categories
+
+# Export data
+python src/cli.py export --format csv --output gifts.csv
+
+# Create visualizations
+python src/cli.py visualize --type dashboard
+```
+
+### Programmatic Analysis
+
+```python
+from src.utils.analyzer import GiftsAnalyzer
+from src.utils.classifier import GiftClassifier
+from src.utils.visualizer import GiftsVisualizer
+
+# Statistical analysis
+analyzer = GiftsAnalyzer()
+stats = analyzer.get_summary_statistics()
+top_countries = analyzer.get_top_donor_countries(limit=20)
+valuable_gifts = analyzer.get_most_valuable_gifts(limit=10)
+
+# Automatic categorization
+classifier = GiftClassifier()
+result = classifier.classify("Gold necklace with diamonds")
+# Returns: category, subcategory, confidence, materials
+
+# Create visualizations
+visualizer = GiftsVisualizer()
+visualizer.create_dashboard()
+visualizer.plot_top_donor_countries()
+visualizer.plot_value_distribution()
+```
+
+### Interactive Analysis
+
+Explore the data with the included Jupyter notebook:
+
+```bash
+jupyter notebook notebooks/gift_analysis.ipynb
+```
+
+The notebook includes examples of:
+- Summary statistics and trends
+- Top donors and recipients
+- Gift categorization
+- Advanced search queries
+- Data enrichment
+- Custom visualizations
+
+For detailed documentation, see [Analysis Features Guide](docs/analysis_features.md).
+
 ## Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
@@ -235,15 +309,20 @@ Ways to contribute:
 
 ## Roadmap
 
-See [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) for the complete roadmap. Upcoming features include:
+See [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) for the complete roadmap. Completed features:
 
-- [ ] Command-line interface (CLI)
+- [x] Command-line interface (CLI)
+- [x] Enhanced analytics and visualizations
+- [x] Multi-format export (CSV, JSON, JSONL)
+- [x] Jupyter notebooks for analysis
+- [x] Gift categorization system
+- [x] Data enrichment tools
+
+Upcoming features:
+
 - [ ] Web dashboard for browsing gifts
 - [ ] REST API for programmatic access
 - [ ] Automated data updates via GitHub Actions
-- [ ] Enhanced analytics and visualizations
-- [ ] Multi-format export (Excel, XML, etc.)
-- [ ] Jupyter notebooks for analysis
 
 ## License
 
