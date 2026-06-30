@@ -1,0 +1,10 @@
+[project]
+name = "all-foreign-gifts-around-us"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "llm>=0.31",
+    "llm-anthropic>=0.25.1",
+    "natural-pdf[all]>=0.6.5",
+    "pydantic>=2.13.4",
+]
