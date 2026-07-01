@@ -1,300 +1,119 @@
 # Workflow Guide
 
-This guide explains how to use the Foreign Gifts Tracker to extract, process, and analyze data.
+This guide explains how to rebuild the dataset from Federal Register PDFs using `uv run gifts pipeline`.
 
 ## Overview
 
-The data processing pipeline consists of several stages:
+```
+fetch -> download -> extract -> combine -> enrich -> anonymize -> build-db
+```
 
-1. **Data Acquisition** - Download PDFs or text from Federal Register
-2. **Text Extraction** - Convert PDFs to text
-3. **Data Extraction** - Use LLMs to extract structured data
-4. **Data Processing** - Combine, deduplicate, and enrich data
-5. **Database Creation** - Store in SQLite database
-6. **Export** - Generate CSV and other formats
-7. **Analysis** - Query and visualize the data
+| Stage | Reads | Writes | Calls an LLM? |
+|-------|-------|--------|----------------|
+| `fetch` | Federal Register API | `data/raw/federal_register.json` | No |
+| `download` | `data/raw/federal_register.json` | `data/raw/pdfs/*.pdf` | No |
+| `extract` | `data/raw/pdfs/*.pdf` | `data/interim/extracted/*.json` | Yes, for new PDFs only |
+| `combine` | `data/interim/extracted/*.json` | `data/interim/combined.json` | No |
+| `enrich` | `data/interim/combined.json` | `data/interim/enriched.json` | Yes, for new/failed records only |
+| `anonymize` | `data/interim/enriched.json` | (modifies in place) | No |
+| `build-db` | `data/interim/enriched.json` | `data/gifts.db`, `data/gifts.csv`, `data/gifts.json` | No |
 
-## Detailed Workflow
+Everything under `data/raw/` and `data/interim/` is gitignored and fully regenerable; only the three files `build-db` produces are committed.
 
-### Stage 1: Data Acquisition
-
-#### Manual Download
-
-1. Visit the [Federal Register website](https://www.federalregister.gov/)
-2. Search for "foreign gifts"
-3. Download relevant PDF documents to `data/raw/pdfs/`
-
-#### Automated Download (using federal_register.py)
+## Running the whole pipeline
 
 ```bash
-python src/api/federal_register.py
+uv run gifts pipeline all --model claude-haiku-4.5
 ```
 
-This script queries the Federal Register API and downloads new documents automatically.
+## Running stage by stage
 
-### Stage 2: Text Extraction
-
-Convert PDFs to text files:
+### 1. Fetch document metadata
 
 ```bash
-python src/extractors/pdf_processor.py
+uv run gifts pipeline fetch
 ```
 
-This will:
-- Read PDFs from `data/raw/pdfs/`
-- Extract text content
-- Save to `data/raw/text/`
+Queries the Federal Register API for "Gifts to Federal Employees from Foreign Government Sources" notices from the State Department.
 
-**Input:** `data/raw/pdfs/*.pdf`
-**Output:** `data/raw/text/*.txt`
-
-### Stage 3: Data Extraction
-
-Extract structured data from text using LLMs:
+### 2. Download PDFs
 
 ```bash
-python src/extractors/data_extractor.py
+uv run gifts pipeline download
 ```
 
-This script:
-- Reads text files from `data/raw/text/`
-- Splits into sections based on "Federal Register / Vol."
-- Sends each section to LLM (Claude or Groq)
-- Extracts structured JSON with fields:
-  - `name_and_title` (recipient)
-  - `gift_description`
-  - `foreign_donor`
-  - `circumstances`
-  - `received` (date)
-  - `estimated_value`
-  - `disposition`
-- Saves individual JSON files to `data/processed/json/`
+Skips any PDF already present in `data/raw/pdfs/`.
 
-**Input:** `data/raw/text/*.txt`
-**Output:** `data/processed/json/*.json`
-
-### Stage 4: Data Processing
-
-#### Step 4a: Combine JSON Files
-
-Merge all individual JSON files into a single dataset:
+### 3. Extract gift records
 
 ```bash
-python src/processors/combiner.py
+uv run gifts pipeline extract data/raw/pdfs --model claude-haiku-4.5
 ```
 
-This script:
-- Reads all JSON files from `data/processed/json/`
-- Deduplicates entries based on key fields
-- Merges disposition arrays for duplicates
-- Outputs `data/output/combined.json`
+For each page: find and strip the Federal Register running header, OCR if the page has almost no extractable text, skip pages without gift-record markers ("Rec'd", "Est. Value", "Excellency", etc.), then ask the model to extract all gift records on the page against the `GiftRecordList` schema (`src/foreign_gifts/models.py`). You can also point this at a single PDF: `uv run gifts pipeline extract data/raw/pdfs/2024-03129.pdf`.
 
-**Input:** `data/processed/json/*.json`
-**Output:** `data/output/combined.json`
+Pass `--overwrite` to re-process PDFs that already have output JSON.
 
-#### Step 4b: Extract Donor Information
-
-Parse donor details (name, title, country):
+### 4. Combine and deduplicate
 
 ```bash
-python src/extractors/donor_extractor.py
+uv run gifts pipeline combine
 ```
 
-This script:
-- Reads `data/output/combined.json`
-- Uses Claude to extract structured donor info from `foreign_donor` field
-- Outputs `data/output/combined_json_with_names.json`
+Merges every file in `data/interim/extracted/` into one list, deduplicating on all fields except `disposition` and merging `disposition` values into an array for records that appear in more than one notice (a gift can be reported as "Pending Transfer to NARA" one year and "Transferred to NARA" the next).
 
-**Input:** `data/output/combined.json`
-**Output:** `data/output/combined_json_with_names.json`
-
-#### Step 4c: Extract Recipient Information
-
-Parse recipient details (name, title):
+### 5. Enrich donor and recipient details
 
 ```bash
-python src/extractors/recipient_extractor.py
+uv run gifts pipeline enrich --model claude-haiku-4.5
 ```
 
-This script:
-- Reads `data/output/combined_json_with_names.json`
-- Uses Claude to extract recipient info from `name_and_title` field
-- Outputs `data/output/combined_json_with_both_names.json`
+Asks the model to split `foreign_donor` into `donor_name` / `donor_title` / `donor_country`, and `name_and_title` into `recipient_name` / `recipient_title`.
 
-**Input:** `data/output/combined_json_with_names.json`
-**Output:** `data/output/combined_json_with_both_names.json`
+This step is incremental: it compares each record against the existing `data/interim/enriched.json` and reuses the prior result for anything already successfully enriched, only calling the LLM for new records or ones that failed last time. Delete `data/interim/enriched.json` first if you want to force a full re-enrichment.
 
-#### Step 4d: Anonymize Agency Employees
-
-Remove donor information for anonymous recipients:
+### 6. Anonymize agency employees
 
 ```bash
-python src/processors/anonymizer.py
+uv run gifts pipeline anonymize
 ```
 
-This script:
-- Identifies entries where recipient is "An Agency Employee"
-- Sets donor name, title, and country to empty strings
-- Maintains anonymity of recipients
+Blanks `donor_name`, `donor_title`, and `donor_country` wherever the recipient is listed as "An Agency Employee," to avoid identifying that person via their gift's donor.
 
-**Input/Output:** `data/output/combined_json_with_both_names.json` (modified in place)
-
-### Stage 5: Database Creation
-
-Create SQLite database from processed JSON:
+### 7. Build the database and exports
 
 ```bash
-python src/database/db_manager.py
+uv run gifts pipeline build-db
 ```
 
-This script:
-- Reads `data/output/combined_json_with_both_names.json`
-- Creates/updates `data/output/gifts.db`
-- Creates `gifts` table with proper schema
-- Handles data type conversions
-- Parses estimated values
-- Assigns sequential IDs
+Writes `data/gifts.db` (with FTS5 full-text search enabled on the description/name/donor fields), `data/gifts.csv`, and `data/gifts.json`.
 
-**Input:** `data/output/combined_json_with_both_names.json`
-**Output:** `data/output/gifts.db`
-
-**Database Schema:**
-
-```sql
-CREATE TABLE gifts (
-    id INTEGER PRIMARY KEY,
-    name_and_title TEXT,
-    gift_description TEXT,
-    received TEXT,
-    estimated_value REAL,
-    disposition TEXT,
-    foreign_donor TEXT,
-    circumstances TEXT,
-    donor_name TEXT,
-    donor_title TEXT,
-    donor_country TEXT,
-    recipient_name TEXT,
-    recipient_title TEXT
-);
-```
-
-### Stage 6: Export Data
-
-The database can be exported to various formats:
-
-#### Export to CSV
+## Analyzing the result
 
 ```bash
-sqlite3 data/output/gifts.db ".headers on" ".mode csv" ".output data/output/gifts.csv" "SELECT * FROM gifts;"
+uv run gifts stats
+uv run gifts search --keyword painting --country France
+uv run datasette data/gifts.db -m site/metadata.json
 ```
 
-Or use Python:
-
-```python
-import sqlite_utils
-db = sqlite_utils.Database("data/output/gifts.db")
-with open("data/output/gifts.csv", "w") as f:
-    db["gifts"].rows_where(order_by="id").write_csv(f)
-```
-
-### Stage 7: Data Analysis
-
-#### Query Examples
-
-Using sqlite3 command line:
-
-```bash
-# Total gifts by country
-sqlite3 data/output/gifts.db "SELECT donor_country, COUNT(*) as count FROM gifts GROUP BY donor_country ORDER BY count DESC LIMIT 10;"
-
-# Highest value gifts
-sqlite3 data/output/gifts.db "SELECT recipient_name, donor_country, estimated_value, gift_description FROM gifts WHERE estimated_value IS NOT NULL ORDER BY estimated_value DESC LIMIT 10;"
-
-# Gifts by recipient
-sqlite3 data/output/gifts.db "SELECT recipient_name, COUNT(*) as count FROM gifts GROUP BY recipient_name ORDER BY count DESC;"
-```
-
-Using Python:
-
-```python
-import sqlite_utils
-
-db = sqlite_utils.Database("data/output/gifts.db")
-
-# Total gifts by country
-for row in db.execute("SELECT donor_country, COUNT(*) as count FROM gifts GROUP BY donor_country ORDER BY count DESC LIMIT 10;"):
-    print(f"{row['donor_country']}: {row['count']}")
-```
-
-## Complete Pipeline Script
-
-To run the entire pipeline from start to finish:
-
-```bash
-#!/bin/bash
-# scripts/run_extraction.sh
-
-echo "Starting Foreign Gifts extraction pipeline..."
-
-echo "Step 1: Processing PDFs..."
-python src/extractors/pdf_processor.py
-
-echo "Step 2: Extracting data with LLM..."
-python src/extractors/data_extractor.py
-
-echo "Step 3: Combining JSON files..."
-python src/processors/combiner.py
-
-echo "Step 4: Extracting donor information..."
-python src/extractors/donor_extractor.py
-
-echo "Step 5: Extracting recipient information..."
-python src/extractors/recipient_extractor.py
-
-echo "Step 6: Anonymizing agency employees..."
-python src/processors/anonymizer.py
-
-echo "Step 7: Creating database..."
-python src/database/db_manager.py
-
-echo "Pipeline complete! Database available at data/output/gifts.db"
-```
+See [Analysis Features](analysis_features.md) for the full command and API reference.
 
 ## Best Practices
 
-1. **Incremental Processing**: Process new data separately and merge with existing database
-2. **Backup Data**: Keep backups of raw PDFs and text files
-3. **Version Control**: Commit processed data periodically
-4. **Cost Management**: Monitor API usage when using LLMs
-5. **Quality Checks**: Manually review sample extractions for accuracy
-6. **Logging**: Check `logs/gifts_tracker.log` for errors or warnings
+1. **Cost management**: `extract` and `enrich` are the only stages that call an LLM. Test on a single PDF (`gifts pipeline extract data/raw/pdfs/<file>.pdf`) before running the full directory.
+2. **Quality checks**: spot-check a sample of extracted records against the source PDF, especially for scanned/OCR'd pages.
+3. **Re-running**: `extract` skips PDFs that already have output JSON unless you pass `--overwrite`; the other stages simply overwrite their output each run.
 
 ## Troubleshooting
 
-### LLM Extraction Errors
+### LLM extraction errors
 
-If extraction fails:
-- Check API key configuration
-- Verify API rate limits
-- Review the problematic text section
-- Try with a different model
+`extract` falls back to a plain JSON-array prompt if schema-based extraction fails, and logs both failures to stderr. If a page consistently fails, check the OCR'd text quality or try a stronger model with `--model`.
 
-### JSON Parsing Errors
+### JSON parsing errors
 
-If JSON is malformed:
-- Use `src/utils/json_utils.py` to validate
-- Check LLM output for formatting issues
-- Adjust temperature parameter for more consistent output
+Check the stderr output from `extract`/`enrich` for `[schema extraction failed: ...]` or `[fallback extraction failed: ...]` messages, which include the underlying error.
 
-### Database Errors
+### Database errors
 
-If database creation fails:
-- Verify JSON structure is correct
-- Check for missing required fields
-- Review data type conversions in `db_manager.py`
-
-## Next Steps
-
-- See [API Reference](api_reference.md) for detailed function documentation
-- Explore Jupyter notebooks in `notebooks/` for analysis examples
-- Check [CONTRIBUTING.md](../CONTRIBUTING.md) for how to add features
+`build-db` expects the shape produced by `enrich` (`GiftRecord` fields plus `donor_name`/`donor_title`/`donor_country`/`recipient_name`/`recipient_title`). If it errors, check `data/interim/enriched.json` for missing fields.

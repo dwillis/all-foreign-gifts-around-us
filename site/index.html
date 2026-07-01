@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Foreign Gifts Around Us</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5a5a5a;
+    --line: #ddd;
+    --accent: #8b1a1a;
+    --bg-soft: #faf8f5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.55;
+    background: #fff;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  h1 { font-size: 2rem; margin: 0 0 0.25rem; }
+  .tagline { color: var(--muted); font-size: 1.05rem; margin: 0 0 2rem; }
+  h2 { font-size: 1.2rem; margin: 2.5rem 0 0.75rem; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; }
+  p { margin: 0 0 1rem; }
+  code { background: var(--bg-soft); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.9em; }
+  ul { padding-left: 1.3rem; }
+  li { margin-bottom: 0.4rem; }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat { background: var(--bg-soft); border-radius: 8px; padding: 1rem; text-align: center; }
+  .stat .n { font-size: 1.5rem; font-weight: 700; display: block; }
+  .stat .l { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+  .cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+  }
+  .cta:hover { opacity: 0.9; }
+  .downloads a {
+    display: inline-block;
+    margin: 0 0.6rem 0.6rem 0;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .downloads a:hover { border-color: var(--accent); color: var(--accent); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; margin: 1rem 0; }
+  th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>All Foreign Gifts Around Us</h1>
+  <p class="tagline">Tangible gifts given to U.S. federal employees by foreign governments, extracted from Federal Register notices.</p>
+
+  <p>
+    U.S. law requires federal employees to report gifts of more than minimal value received
+    from foreign governments. The State Department publishes these reports in the
+    <a href="https://www.federalregister.gov/">Federal Register</a> as dense, unstructured text.
+    This project uses large language models to turn those notices into structured, queryable data:
+    who received what, from whom, when, its estimated value, and what happened to it.
+  </p>
+
+  <div class="stats" id="stats">
+    <div class="stat"><span class="n">4,670</span><span class="l">gifts</span></div>
+    <div class="stat"><span class="n">2005&ndash;2022</span><span class="l">calendar years</span></div>
+    <div class="stat"><span class="n">306</span><span class="l">donor countries</span></div>
+  </div>
+
+  <h2>Explore the data</h2>
+  <p>
+    Browse, filter, and search every record in your browser &mdash; no server, no install.
+    <a href="https://lite.datasette.io/">Datasette Lite</a> loads the SQLite database directly
+    from this site.
+  </p>
+  <a class="cta" id="launch-explorer" href="#">Launch data explorer &rarr;</a>
+
+  <h2>Download the data</h2>
+  <div class="downloads">
+    <a href="../data/gifts.db">gifts.db (SQLite)</a>
+    <a href="../data/gifts.csv">gifts.csv</a>
+    <a href="../data/gifts.json">gifts.json</a>
+  </div>
+
+  <h2>Data dictionary</h2>
+  <table>
+    <tr><th>Field</th><th>Description</th></tr>
+    <tr><td><code>name_and_title</code></td><td>Recipient's full name and title, as printed.</td></tr>
+    <tr><td><code>recipient_name</code></td><td>Recipient name, honorifics removed.</td></tr>
+    <tr><td><code>recipient_title</code></td><td>Recipient's official title.</td></tr>
+    <tr><td><code>gift_description</code></td><td>Description of the gift.</td></tr>
+    <tr><td><code>received</code></td><td>Date received (yyyy-mm-dd).</td></tr>
+    <tr><td><code>estimated_value</code></td><td>Estimated value in USD. Null where the source gave a non-numeric value.</td></tr>
+    <tr><td><code>disposition</code></td><td>What happened to the gift (e.g. "Transferred to NARA").</td></tr>
+    <tr><td><code>foreign_donor</code></td><td>Donor's full name, title, and country, as printed.</td></tr>
+    <tr><td><code>donor_name</code></td><td>Donor name, honorifics removed.</td></tr>
+    <tr><td><code>donor_title</code></td><td>Donor's official title.</td></tr>
+    <tr><td><code>donor_country</code></td><td>Donor's country.</td></tr>
+    <tr><td><code>circumstances</code></td><td>Stated reason the gift was accepted rather than declined.</td></tr>
+  </table>
+
+  <h2>Caveats</h2>
+  <ul>
+    <li>Some presidential administrations report more promptly and completely than others; gaps in a given year likely reflect reporting delays, not an absence of gifts.</li>
+    <li>Values recorded as ranges (e.g. "$1,000&ndash;$1,500") resolve to the low end; vague values ("Unknown", "In appraisal process") are left blank.</li>
+    <li>Donor and recipient names/titles/countries are parsed out of free text by an LLM and may occasionally misparse unusual formatting.</li>
+    <li>When the recipient is an anonymous "Agency Employee," donor details are blanked to preserve that anonymity.</li>
+  </ul>
+
+  <h2>Code</h2>
+  <p>
+    The extraction pipeline (Federal Register &rarr; PDF &rarr; LLM &rarr; database) and this
+    site are built with <a href="https://docs.astral.sh/uv/">uv</a> and
+    <a href="https://llm.datasette.io/">llm</a>. See the
+    <a href="https://github.com/dwillis/all-foreign-gifts-around-us">source repository</a> for
+    the code, or its README for how to run the pipeline yourself with Anthropic or a local
+    Ollama model.
+  </p>
+
+  <footer>
+    Data source: <a href="https://www.federalregister.gov/">Federal Register</a>.
+    Built with <a href="https://datasette.io/">Datasette</a>.
+    For educational and transparency purposes; the underlying data is publicly available.
+  </footer>
+
+</div>
+<script>
+  var base = new URL('.', window.location.href).href;
+  var dbUrl = base + '../data/gifts.db';
+  var metadataUrl = base + 'metadata.json';
+  var liteUrl = 'https://lite.datasette.io/?url=' + encodeURIComponent(dbUrl) +
+    '&metadata=' + encodeURIComponent(metadataUrl);
+  document.getElementById('launch-explorer').href = liteUrl;
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "title": "All Foreign Gifts Around Us",
+  "description": "Tangible gifts given to U.S. federal employees by foreign governments, extracted from Federal Register notices (calendar years 2005-2022).",
+  "license": "Public domain (U.S. Government work)",
+  "license_url": "https://www.usa.gov/government-works",
+  "source": "Federal Register: Office of Protocol, Gifts to Federal Employees From Foreign Government Sources",
+  "source_url": "https://www.federalregister.gov/",
+  "databases": {
+    "gifts": {
+      "tables": {
+        "gifts": {
+          "description": "One row per reported gift. Source text is preserved in name_and_title and foreign_donor; recipient_name/title and donor_name/title/country are parsed out of those fields.",
+          "sort_desc": "received",
+          "facets": ["donor_country", "disposition", "recipient_title"],
+          "columns": {
+            "id": "Row identifier.",
+            "name_and_title": "Recipient's full name and title as printed in the Federal Register notice.",
+            "recipient_name": "Recipient name, honorifics removed.",
+            "recipient_title": "Recipient's official title.",
+            "gift_description": "Description of the gift.",
+            "received": "Date the gift was received (yyyy-mm-dd).",
+            "estimated_value": "Estimated value in USD. Null where the source listed a non-numeric value (e.g. \"Unknown\", \"In appraisal process\"); ranges (e.g. \"1000-1500\") resolve to the low end.",
+            "disposition": "What happened to the gift (e.g. \"Transferred to NARA\").",
+            "foreign_donor": "Donor's full name, title, and country as printed in the Federal Register notice.",
+            "donor_name": "Donor name, honorifics removed. Blank when the recipient is an anonymous agency employee.",
+            "donor_title": "Donor's official title.",
+            "donor_country": "Donor's country.",
+            "circumstances": "Stated reason the gift was accepted rather than declined."
+          }
+        }
+      },
+      "queries": {
+        "most_valuable_gifts": {
+          "sql": "select recipient_name, recipient_title, donor_name, donor_country, gift_description, estimated_value, received from gifts where estimated_value is not null order by estimated_value desc limit 50",
+          "title": "Most valuable gifts"
+        },
+        "gifts_by_country": {
+          "sql": "select donor_country, count(*) as gift_count, sum(estimated_value) as total_value from gifts where donor_country is not null group by donor_country order by gift_count desc",
+          "title": "Gifts by donor country"
+        },
+        "gifts_by_year": {
+          "sql": "select strftime('%Y', received) as year, count(*) as gift_count, sum(estimated_value) as total_value from gifts where received is not null and received != '' group by year order by year desc",
+          "title": "Gifts by year"
+        }
+      }
+    }
+  }
+}

@@ -1,348 +1,178 @@
 # All Foreign Gifts Around Us
 
-> Extracting structured data from Federal Register publications about gifts given to U.S. officials by foreign government officials.
+> Structured data and a browsable dataset of tangible gifts given to U.S. federal employees by foreign governments, extracted from Federal Register notices.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 
 ## Overview
 
 The Federal Register is the official journal of the United States government, which publishes various notices, rules, and regulatory information. Among these publications are reports detailing gifts received by U.S. government officials from foreign sources. Some presidential administrations are [better than others](https://oversightdemocrats.house.gov/news/press-releases/oversight-democrats-release-evidence-showing-trump-first-family-failed-to) about reporting these gifts. The current minimum value of reportable gifts is [$480](https://www.gsa.gov/policy-regulations/policy/personal-property-policy-overview/special-programs/foreign-gifts).
 
-This project uses Large Language Models (LLMs), specifically Claude 3 Sonnet and Claude 3 Haiku, to extract structured information from these unstructured text reports and convert it into JSON format. The data can then be used for analysis, visualization, or integration with other systems.
+This project uses [`llm`](https://llm.datasette.io/) to extract structured data from these unstructured Federal Register notices, via natural-pdf and any model `llm` supports — Claude (Anthropic) or a local model through Ollama. The result is a dataset you can query directly or browse online.
+
+**[Browse the data →](site/index.html)** (or open `site/index.html` locally)
 
 ## Quick Start
 
+This project uses [uv](https://docs.astral.sh/uv/) for dependency and script management.
+
 ```bash
-# Clone the repository
 git clone https://github.com/dwillis/all-foreign-gifts-around-us.git
 cd all-foreign-gifts-around-us
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure API keys
-cp config/config.example.yaml config/config.yaml
-# Edit config/config.yaml with your API keys
-
-# Run the extraction pipeline
-python src/extractors/data_extractor.py
+uv sync
 ```
 
-For detailed setup instructions, see the [Setup Guide](docs/setup.md).
+Query the data that's already committed to the repo:
 
-## Features
+```bash
+uv run gifts stats
+uv run gifts search --keyword painting --country France
+uv run gifts top-countries --limit 20
+```
 
-- **LLM-Powered Extraction**: Uses Claude and/or Groq models to extract structured data from unstructured text
-- **Comprehensive Data**: Extracts donor info (name, title, country), recipient info, gift descriptions, values, and dispositions
-- **Multiple Formats**: Output to JSON, SQLite database, and CSV
-- **Data Quality**: Built-in deduplication and anonymization for agency employees
-- **Configurable**: YAML-based configuration for easy customization
-- **Well-Documented**: Comprehensive documentation and examples
+Or browse it locally with [Datasette](https://datasette.io/):
+
+```bash
+uv run datasette data/gifts.db -m site/metadata.json
+```
 
 ## Project Structure
 
 ```
 all-foreign-gifts-around-us/
-├── src/                    # Source code
-│   ├── extractors/         # LLM-based data extraction
-│   ├── processors/         # Data processing & transformation
-│   ├── database/           # Database management
-│   ├── api/               # External API clients
-│   └── utils/             # Utilities (config, logging)
-├── data/                   # Data directories
-│   ├── raw/               # PDFs and text files
-│   ├── processed/         # Extracted JSON files
-│   └── output/            # Final database and exports
-├── docs/                   # Documentation
-│   ├── setup.md           # Setup instructions
-│   ├── workflow.md        # Usage guide
-│   └── images/            # Screenshots and diagrams
-├── config/                 # Configuration files
-│   ├── config.example.yaml
-│   └── logging.yaml
-├── tests/                  # Test suite
-├── scripts/               # Automation scripts
-└── notebooks/             # Jupyter notebooks for analysis
-
+├── src/foreign_gifts/       # Python package
+│   ├── cli.py                #   `gifts` command-line entry point
+│   ├── models.py             #   Pydantic schemas for gift records
+│   ├── llm_client.py         #   Resolves models through the `llm` library
+│   ├── pipeline/              #   fetch -> download -> extract -> combine -> enrich -> anonymize -> build-db
+│   └── analysis/               #   Statistics, classification, enrichment, visualization
+├── data/
+│   ├── gifts.db, gifts.csv, gifts.json  # Committed dataset
+│   ├── raw/                  # Source PDFs (regenerated, gitignored)
+│   └── interim/              # Intermediate extraction JSON (regenerated, gitignored)
+├── site/                     # Static browse/filter site (Datasette Lite + GitHub Pages)
+├── docs/                     # Setup and workflow guides
+├── notebooks/                # Jupyter notebook for interactive analysis
+└── tests/
 ```
 
-## Data Extraction Pipeline
+## The Extraction Pipeline
 
-The extraction process follows these stages:
+Rebuilding the dataset from scratch runs through `uv run gifts pipeline <stage>`:
 
-1. **PDF Processing** (`src/extractors/pdf_processor.py`)
-   - Converts Federal Register PDFs to text files
-   - Handles OCR when needed
+1. **`fetch`** — Query the Federal Register API for foreign-gifts notices.
+2. **`download`** — Download the PDFs.
+3. **`extract`** — Read each PDF with [natural-pdf](https://github.com/jsoma/natural-pdf), stripping headers and OCR'ing scanned pages, then extract gift records per page via an LLM using a Pydantic schema.
+4. **`combine`** — Deduplicate records across documents and merge `disposition` values.
+5. **`enrich`** — Use an LLM to split `foreign_donor` and `name_and_title` into structured donor/recipient name, title, and country.
+6. **`anonymize`** — Blank donor details for anonymous "Agency Employee" recipients.
+7. **`build-db`** — Write `data/gifts.db` (with full-text search enabled), `data/gifts.csv`, and `data/gifts.json`.
 
-2. **Data Extraction** (`src/extractors/data_extractor.py`)
-   - Splits text into sections
-   - Uses LLM to extract structured JSON
-   - Handles parsing errors gracefully
+Or run the whole thing at once:
 
-3. **Data Combination** (`src/processors/combiner.py`)
-   - Merges individual JSON files
-   - Deduplicates entries
-   - Combines disposition arrays
+```bash
+uv run gifts pipeline all --model claude-haiku-4.5
+```
 
-4. **Information Enrichment**
-   - `src/extractors/donor_extractor.py`: Extracts donor details (name, title, country)
-   - `src/extractors/recipient_extractor.py`: Extracts recipient details (name, title)
-   - `src/processors/anonymizer.py`: Anonymizes agency employees
+### Choosing a model
 
-5. **Database Creation** (`src/database/db_manager.py`)
-   - Creates SQLite database
-   - Handles type conversions
-   - Generates CSV export
+Every pipeline stage that calls an LLM goes through [`llm`](https://llm.datasette.io/), so any model `llm` knows about works via `--model`:
 
-For detailed workflow information, see the [Workflow Guide](docs/workflow.md).
+```bash
+# Anthropic (default: claude-haiku-4.5)
+uv run llm keys set anthropic
+uv run gifts pipeline extract data/raw/pdfs --model claude-sonnet-4.6
+
+# A local model via Ollama
+ollama pull qwen3.5:397b-cloud
+uv run gifts pipeline extract data/raw/pdfs --model qwen3.5:397b-cloud
+```
+
+Set `GIFTS_MODEL` to change the default without passing `--model` every time. Run `uv run llm models` to see everything installed.
+
+## Keeping the Data Current
+
+The Federal Register publishes new gift notices periodically, often with a one- to two-year reporting lag, so `data/gifts.db` is a point-in-time snapshot rather than a live feed. To pull in anything new:
+
+```bash
+uv run gifts pipeline all
+git add data/gifts.db data/gifts.csv data/gifts.json
+git commit -m "Update dataset through <calendar year>"
+git push
+```
+
+This is cheap to re-run: `fetch`/`download`/`extract` only touch notices and PDFs you don't already have (`extract` skips a PDF if its output JSON already exists), and `enrich` only sends *new* records to the LLM — it skips anything that already has `donor_name`/`recipient_name` filled in from a previous run. `combine` and `build-db` are pure local steps and always rebuild from everything on disk, so the output stays complete and deduplicated even though the LLM calls are incremental.
+
+Because [`site/index.html`](site/index.html) and [`site/metadata.json`](site/metadata.json) point Datasette Lite straight at the committed `data/gifts.db` on GitHub Pages, pushing the rebuilt file *is* the site update — there's no separate deploy step. The only manual follow-up is refreshing the gift-count/year-range numbers in `site/index.html`'s stat boxes and `site/metadata.json`'s description, which are display-only text, not read from the database.
 
 ## Data Schema
 
-The extracted data includes:
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `name_and_title` | String | Full recipient name and title |
-| `recipient_name` | String | Extracted recipient name |
-| `recipient_title` | String | Extracted recipient title |
-| `gift_description` | String | Description of the gift |
-| `received` | Date | Date gift was received |
-| `estimated_value` | Float | Estimated value in USD |
-| `disposition` | String | What happened to the gift (e.g., "Transferred to NARA") |
-| `foreign_donor` | String | Full donor name and title |
-| `donor_name` | String | Extracted donor name |
-| `donor_title` | String | Extracted donor title |
-| `donor_country` | String | Donor's country |
-| `circumstances` | String | Circumstances of the gift |
-
-## Usage Examples
-
-### Query the Database
-
-```python
-import sqlite_utils
-
-db = sqlite_utils.Database("data/output/gifts.db")
-
-# Top 10 donor countries
-for row in db.execute("""
-    SELECT donor_country, COUNT(*) as count
-    FROM gifts
-    WHERE donor_country IS NOT NULL
-    GROUP BY donor_country
-    ORDER BY count DESC
-    LIMIT 10
-"""):
-    print(f"{row['donor_country']}: {row['count']}")
-
-# Highest value gifts
-for row in db.execute("""
-    SELECT recipient_name, donor_country, estimated_value, gift_description
-    FROM gifts
-    WHERE estimated_value IS NOT NULL
-    ORDER BY estimated_value DESC
-    LIMIT 5
-"""):
-    print(f"${row['estimated_value']:,.2f} - {row['gift_description'][:50]}")
-```
-
-### Access JSON Data
-
-The processed data is available in JSON format:
-
-- `data/output/combined.json` - Basic extracted data
-- `data/output/combined_json_with_names.json` - With donor info
-- `data/output/combined_json_with_both_names.json` - Complete data
-
-```python
-import json
-
-with open("data/output/combined_json_with_both_names.json", "r") as f:
-    gifts = json.load(f)
-
-# Filter gifts from a specific country
-irish_gifts = [g for g in gifts if g.get("donor_country") == "Ireland"]
-print(f"Found {len(irish_gifts)} gifts from Ireland")
-```
-
-## Configuration
-
-Configuration is managed through YAML files and environment variables:
-
-1. Copy `config/config.example.yaml` to `config/config.yaml`
-2. Add your API keys
-3. Customize paths and parameters as needed
-
-Alternatively, use environment variables:
-
-```bash
-export ANTHROPIC_API_KEY=your_key_here
-export GROQ_API_KEY=your_key_here
-```
-
-See [Setup Guide](docs/setup.md) for details.
-
-## Requirements
-
-- Python 3.12+
-- Anthropic API key (for Claude models) or Groq API key
-- For PDF processing: `poppler-utils` (Linux) or `poppler` (macOS)
-
-## Installation
-
-### Standard Installation
-
-```bash
-pip install -r requirements.txt
-```
-
-### Development Installation
-
-```bash
-pip install -r requirements.txt
-```
-
-Includes testing, linting, and code quality tools.
-
-## Data Updates
-
-The Federal Register publishes gift reports annually and sometimes provides updates to previous records. This project is updated periodically to incorporate new data.
-
-To check for new data:
-
-```bash
-python src/api/federal_register.py
-```
-
-## Documentation
-
-- [Setup Guide](docs/setup.md) - Installation and configuration
-- [Workflow Guide](docs/workflow.md) - How to use the tools
-- [Contributing Guide](CONTRIBUTING.md) - How to contribute
-- [Improvement Plan](IMPROVEMENT_PLAN.md) - Roadmap and planned features
+| Field | Description |
+|-------|-------------|
+| `name_and_title` | Recipient's full name and title, as printed |
+| `recipient_name` / `recipient_title` | Recipient name (honorifics removed) and title |
+| `gift_description` | Description of the gift |
+| `received` | Date received (yyyy-mm-dd) |
+| `estimated_value` | Estimated value in USD |
+| `disposition` | What happened to the gift (e.g. "Transferred to NARA") |
+| `foreign_donor` | Donor's full name, title, and country, as printed |
+| `donor_name` / `donor_title` / `donor_country` | Donor name, title, and country |
+| `circumstances` | Stated reason the gift was accepted |
 
 ## Analysis Features
 
-The project includes comprehensive analytical tools to extract insights from the data:
-
-### Command-Line Interface
-
 ```bash
-# Get summary statistics
-python src/cli.py stats
-
-# Search for gifts
-python src/cli.py search --keyword "painting" --country "France"
-python src/cli.py search --min-value 5000 --recipient "Biden"
-
-# Show top donors and recipients
-python src/cli.py top-countries --limit 20
-python src/cli.py top-recipients --limit 15
-
-# Find most valuable gifts
-python src/cli.py valuable --limit 10
-
-# Classify gifts by type
-python src/cli.py categories
-
-# Export data
-python src/cli.py export --format csv --output gifts.csv
-
-# Create visualizations
-python src/cli.py visualize --type dashboard
+uv run gifts stats
+uv run gifts search --keyword painting --country France
+uv run gifts search --min-value 5000 --recipient Biden
+uv run gifts top-countries --limit 20
+uv run gifts top-recipients --limit 15
+uv run gifts valuable --limit 10
+uv run gifts categories
+uv run gifts classify "Gold necklace with diamonds"
+uv run gifts export --format csv --output out.csv
+uv run gifts visualize --type dashboard   # requires: uv sync --group dev
 ```
 
-### Programmatic Analysis
+Programmatically:
 
 ```python
-from src.utils.analyzer import GiftsAnalyzer
-from src.utils.classifier import GiftClassifier
-from src.utils.visualizer import GiftsVisualizer
+from foreign_gifts.analysis.analyzer import GiftsAnalyzer
+from foreign_gifts.analysis.classifier import GiftClassifier
 
-# Statistical analysis
-analyzer = GiftsAnalyzer()
+analyzer = GiftsAnalyzer()  # defaults to data/gifts.db
 stats = analyzer.get_summary_statistics()
 top_countries = analyzer.get_top_donor_countries(limit=20)
-valuable_gifts = analyzer.get_most_valuable_gifts(limit=10)
 
-# Automatic categorization
 classifier = GiftClassifier()
 result = classifier.classify("Gold necklace with diamonds")
-# Returns: category, subcategory, confidence, materials
-
-# Create visualizations
-visualizer = GiftsVisualizer()
-visualizer.create_dashboard()
-visualizer.plot_top_donor_countries()
-visualizer.plot_value_distribution()
 ```
 
-### Interactive Analysis
+An interactive walkthrough of all of this lives in [`notebooks/gift_analysis.ipynb`](notebooks/gift_analysis.ipynb) (`uv run --group dev jupyter notebook notebooks/gift_analysis.ipynb`). See [docs/analysis_features.md](docs/analysis_features.md) for the full reference.
 
-Explore the data with the included Jupyter notebook:
+## Documentation
 
-```bash
-jupyter notebook notebooks/gift_analysis.ipynb
-```
+- [Setup Guide](docs/setup.md)
+- [Workflow Guide](docs/workflow.md) — running the extraction pipeline stage by stage
+- [Analysis Features](docs/analysis_features.md)
+- [Contributing Guide](CONTRIBUTING.md)
 
-The notebook includes examples of:
-- Summary statistics and trends
-- Top donors and recipients
-- Gift categorization
-- Advanced search queries
-- Data enrichment
-- Custom visualizations
+## Caveats
 
-For detailed documentation, see [Analysis Features Guide](docs/analysis_features.md).
-
-## Contributing
-
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-Ways to contribute:
-- Report bugs or suggest features via [Issues](https://github.com/dwillis/all-foreign-gifts-around-us/issues)
-- Improve documentation
-- Add tests
-- Implement new features
-- Fix bugs
-
-## Roadmap
-
-See [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) for the complete roadmap. Completed features:
-
-- [x] Command-line interface (CLI)
-- [x] Enhanced analytics and visualizations
-- [x] Multi-format export (CSV, JSON, JSONL)
-- [x] Jupyter notebooks for analysis
-- [x] Gift categorization system
-- [x] Data enrichment tools
-
-Upcoming features:
-
-- [ ] Web dashboard for browsing gifts
-- [ ] REST API for programmatic access
-- [ ] Automated data updates via GitHub Actions
+- The dataset is scoped to gifts received in 2005 or later. A small number of notices include scattered "gifts received in previous years" catch-up entries reaching back to the 1970s; `build-db` drops these (see `MIN_YEAR` in `src/foreign_gifts/pipeline/database.py`).
+- Reporting completeness varies by administration; a gap in a given year likely reflects a reporting delay, not an absence of gifts.
+- Values recorded as ranges (e.g. "$1,000–$1,500") resolve to the low end; vague values ("Unknown", "In appraisal process") are left blank.
+- Donor/recipient name, title, and country are parsed from free text by an LLM and may occasionally misparse unusual formatting.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details. The underlying data is a work of the U.S. Government and is in the public domain.
 
 ## Acknowledgments
 
 - Data source: [Federal Register](https://www.federalregister.gov/)
-- LLM providers: [Anthropic](https://www.anthropic.com/) and [Groq](https://groq.com/)
-- Built with Python, SQLite, and open-source tools
-
-## Related Links
-
-- [Federal Register: Foreign Gifts and Decorations](https://www.federalregister.gov/)
-- [GSA Foreign Gifts Policy](https://www.gsa.gov/policy-regulations/policy/personal-property-policy-overview/special-programs/foreign-gifts)
-- [House Oversight Committee Report](https://oversightdemocrats.house.gov/news/press-releases/oversight-democrats-release-evidence-showing-trump-first-family-failed-to)
-
-## Contact
-
-For questions or issues, please open an issue on GitHub.
+- Built with [uv](https://docs.astral.sh/uv/), [llm](https://llm.datasette.io/), [natural-pdf](https://github.com/jsoma/natural-pdf), and [Datasette](https://datasette.io/)
 
 ---
 

@@ -23,9 +23,9 @@ The `GiftsAnalyzer` class provides comprehensive statistical analysis capabiliti
 
 #### Summary Statistics
 ```python
-from src.utils.analyzer import GiftsAnalyzer
+from foreign_gifts.analysis.analyzer import GiftsAnalyzer
 
-analyzer = GiftsAnalyzer("data/output/gifts.db")
+analyzer = GiftsAnalyzer("data/gifts.db")
 stats = analyzer.get_summary_statistics()
 
 # Returns:
@@ -88,7 +88,7 @@ disposition = analyzer.get_disposition_analysis()
 
 #### Generate Reports
 ```python
-report = analyzer.generate_report("data/output/analysis_report.txt")
+report = analyzer.generate_report("data/analysis_report.txt")
 # Creates comprehensive text report with all statistics
 ```
 
@@ -120,7 +120,7 @@ The `GiftClassifier` uses keyword matching and pattern recognition to categorize
 ### Usage
 
 ```python
-from src.utils.classifier import GiftClassifier
+from foreign_gifts.analysis.classifier import GiftClassifier
 
 classifier = GiftClassifier()
 
@@ -186,7 +186,7 @@ Detects:
 ### Usage
 
 ```python
-from src.utils.enrichment import DataEnricher
+from foreign_gifts.analysis.enrichment import DataEnricher
 
 enricher = DataEnricher()
 
@@ -218,9 +218,9 @@ The `GiftsVisualizer` creates professional charts and graphs.
 
 #### Top Donor Countries
 ```python
-from src.utils.visualizer import GiftsVisualizer
+from foreign_gifts.analysis.visualizer import GiftsVisualizer
 
-viz = GiftsVisualizer("data/output/gifts.db")
+viz = GiftsVisualizer("data/gifts.db")
 viz.plot_top_donor_countries(limit=15)
 # Creates horizontal bar chart
 ```
@@ -255,11 +255,11 @@ viz.create_dashboard()
 # Creates multi-panel dashboard with all key visualizations
 ```
 
-All visualizations are saved to `data/output/visualizations/` as high-resolution PNG files.
+All visualizations are saved to `data/visualizations/` as high-resolution PNG files.
 
 ---
 
-## 5. Command-Line Interface (`src/cli.py`)
+## 5. Command-Line Interface (`src/foreign_gifts/cli.py`)
 
 Access all analysis features from the command line.
 
@@ -267,61 +267,61 @@ Access all analysis features from the command line.
 
 #### Get Summary Statistics
 ```bash
-python src/cli.py stats
+uv run gifts stats
 ```
 
 #### Generate Full Report
 ```bash
-python src/cli.py analyze --output report.txt
+uv run gifts analyze --output report.txt
 ```
 
 #### Search for Gifts
 ```bash
-python src/cli.py search --keyword "painting" --country "France"
-python src/cli.py search --min-value 5000 --max-value 10000
-python src/cli.py search --recipient "Biden" --year "2022"
+uv run gifts search --keyword "painting" --country "France"
+uv run gifts search --min-value 5000 --max-value 10000
+uv run gifts search --recipient "Biden" --year "2022"
 ```
 
 #### Top Donor Countries
 ```bash
-python src/cli.py top-countries --limit 20
+uv run gifts top-countries --limit 20
 ```
 
 #### Top Recipients
 ```bash
-python src/cli.py top-recipients --limit 15
+uv run gifts top-recipients --limit 15
 ```
 
 #### Most Valuable Gifts
 ```bash
-python src/cli.py valuable --limit 10
+uv run gifts valuable --limit 10
 ```
 
 #### Gift Categories
 ```bash
-python src/cli.py categories
+uv run gifts categories
 ```
 
 #### Classify a Description
 ```bash
-python src/cli.py classify "Gold necklace with diamonds"
+uv run gifts classify "Gold necklace with diamonds"
 ```
 
 #### Export Data
 ```bash
-python src/cli.py export --format csv --output gifts.csv
-python src/cli.py export --format json --output gifts.json
-python src/cli.py export --format jsonl --output gifts.jsonl
+uv run gifts export --format csv --output gifts.csv
+uv run gifts export --format json --output gifts.json
+uv run gifts export --format jsonl --output gifts.jsonl
 ```
 
 #### Create Visualizations
 ```bash
-python src/cli.py visualize --type dashboard
-python src/cli.py visualize --type countries
-python src/cli.py visualize --type values
-python src/cli.py visualize --type timeline
-python src/cli.py visualize --type recipients
-python src/cli.py visualize --type all
+uv run gifts visualize --type dashboard
+uv run gifts visualize --type countries
+uv run gifts visualize --type values
+uv run gifts visualize --type timeline
+uv run gifts visualize --type recipients
+uv run gifts visualize --type all
 ```
 
 ---

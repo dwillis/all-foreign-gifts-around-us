@@ -1,203 +1,68 @@
 # Setup Guide
 
-This guide will help you set up the Foreign Gifts Tracker project on your local machine.
-
 ## Prerequisites
 
-- Python 3.12 or higher
-- pip (Python package installer)
+- Python 3.13+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
 - Git
-- API keys for either Anthropic or Groq (or both)
 
-### Linux-specific Prerequisites
-
-For PDF text extraction on Linux systems:
-
-```bash
-sudo apt-get install build-essential libpoppler-cpp-dev pkg-config python3-dev
-```
-
-## Installation Steps
-
-### 1. Clone the Repository
+## Installation
 
 ```bash
 git clone https://github.com/dwillis/all-foreign-gifts-around-us.git
 cd all-foreign-gifts-around-us
+uv sync
 ```
 
-### 2. Create Virtual Environment
+This installs the `foreign_gifts` package and the `gifts` command into a project-local virtual environment. `uv sync --group dev` additionally installs Jupyter, matplotlib, seaborn, and pytest.
 
-It's recommended to use a virtual environment to isolate dependencies:
+Verify it worked:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+uv run gifts --help
 ```
 
-### 3. Install Dependencies
+Nothing else is required to explore the data already committed in `data/gifts.db`.
 
-Install the required Python packages:
+## Configuring a model (only needed to rebuild the dataset)
+
+Every LLM call in the extraction pipeline goes through the [`llm`](https://llm.datasette.io/) library, so you can use Anthropic, a local Ollama model, or anything else `llm` supports.
+
+### Anthropic (default)
 
 ```bash
-pip install -r requirements.txt
+uv run llm keys set anthropic
+# paste your key from https://console.anthropic.com/
 ```
 
-For development (includes testing and code quality tools):
+### Ollama (local, no API key)
 
 ```bash
-pip install -r requirements.txt
+brew install ollama       # or see https://ollama.com/download
+ollama pull llama3.2
+uv run gifts pipeline extract data/raw/pdfs --model llama3.2
 ```
 
-Alternatively, if using pipenv:
-
-```bash
-pipenv install
-pipenv shell
-```
-
-### 4. Configure API Keys
-
-You have two options for configuring your API keys:
-
-#### Option A: Environment Variables
-
-Create a `.env` file in the project root:
-
-```bash
-# .env file
-ANTHROPIC_API_KEY=your_anthropic_key_here
-GROQ_API_KEY=your_groq_key_here
-```
-
-#### Option B: Configuration File
-
-Copy the example configuration file and edit it:
-
-```bash
-cp config/config.example.yaml config/config.yaml
-```
-
-Then edit `config/config.yaml` and add your API keys:
-
-```yaml
-api:
-  anthropic_key: "your-anthropic-api-key-here"
-  groq_key: "your-groq-api-key-here"
-```
-
-### 5. Verify Installation
-
-Test that everything is installed correctly:
-
-```bash
-python -c "import anthropic, groq, sqlite_utils; print('All dependencies installed successfully!')"
-```
-
-## Project Structure
-
-After setup, your project structure should look like this:
-
-```
-all-foreign-gifts-around-us/
-├── config/
-│   ├── config.yaml (your config)
-│   ├── config.example.yaml
-│   └── logging.yaml
-├── data/
-│   ├── raw/
-│   │   ├── pdfs/
-│   │   └── text/
-│   ├── processed/
-│   │   └── json/
-│   └── output/
-├── src/
-│   ├── extractors/
-│   ├── processors/
-│   ├── database/
-│   ├── api/
-│   └── utils/
-├── docs/
-├── tests/
-├── logs/ (created automatically)
-└── README.md
-```
-
-## Obtaining API Keys
-
-### Anthropic (Claude) API Key
-
-1. Visit [Anthropic Console](https://console.anthropic.com/)
-2. Create an account or sign in
-3. Navigate to API Keys section
-4. Generate a new API key
-5. Copy the key (you won't be able to see it again)
-
-### Groq API Key
-
-1. Visit [Groq Console](https://console.groq.com/)
-2. Create an account or sign in
-3. Navigate to API Keys
-4. Generate a new API key
-5. Copy the key
+Run `uv run llm models` to see every model `llm` currently knows about. Set the `GIFTS_MODEL` environment variable to change the default without passing `--model` on every command.
 
 ## Next Steps
 
-Once setup is complete, proceed to the [Workflow Guide](workflow.md) to learn how to use the tools.
+See the [Workflow Guide](workflow.md) to run the extraction pipeline, or the [Analysis Features Guide](analysis_features.md) to explore data already in the repo.
 
 ## Troubleshooting
 
-### pdftotext Installation Issues
+### `natural-pdf` OCR or PDF rendering issues
 
-If you encounter issues installing `pdftotext`:
+`natural-pdf[all]` pulls in its own PDF/OCR dependencies via `uv sync` — no system Poppler install needed.
 
-**On Ubuntu/Debian:**
-```bash
-sudo apt-get install build-essential libpoppler-cpp-dev pkg-config python3-dev
-pip install pdftotext
-```
+### Model not found
 
-**On macOS:**
-```bash
-brew install pkg-config poppler
-pip install pdftotext
-```
+Run `uv run llm models` to confirm the model ID you passed to `--model` is installed/available (for Ollama, run `ollama list` too).
 
-### Permission Errors
-
-If you get permission errors when creating directories:
+### API key not found
 
 ```bash
-chmod -R 755 data/ logs/
+uv run llm keys set anthropic
 ```
 
-### Import Errors
-
-If you get import errors, make sure you're in the virtual environment:
-
-```bash
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### API Key Not Found
-
-If the scripts can't find your API keys:
-
-1. Verify the `.env` file is in the project root
-2. Or verify `config/config.yaml` exists and contains your keys
-3. Ensure you've activated your virtual environment
-4. Try setting the environment variable manually:
-   ```bash
-   export ANTHROPIC_API_KEY=your_key_here
-   ```
-
-## Getting Help
-
-If you encounter issues not covered here:
-
-1. Check existing [GitHub Issues](https://github.com/dwillis/all-foreign-gifts-around-us/issues)
-2. Create a new issue with:
-   - Your operating system
-   - Python version (`python --version`)
-   - Error message
-   - Steps to reproduce
+or set `ANTHROPIC_API_KEY` in your shell.
