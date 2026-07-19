@@ -110,10 +110,19 @@ def extract_from_pdf(pdf_path: str, model) -> list[dict]:
     return all_records
 
 
-def process_pdf(pdf_path: str, output_path: str, model) -> int:
-    """Extract gifts from pdf_path and write JSON to output_path. Returns count."""
+def process_pdf(pdf_path: str, output_path: str, model, source_meta: dict | None = None) -> int:
+    """Extract gifts from pdf_path and write JSON to output_path. Returns count.
+
+    When `source_meta` (a Federal Register document_number/html_url pair) is
+    given, it's stamped onto every extracted record so the final dataset can
+    cite its source notice.
+    """
     print(f"Processing {Path(pdf_path).name} ...")
     records = extract_from_pdf(pdf_path, model)
+    if source_meta:
+        for record in records:
+            record["source_document_number"] = source_meta.get("document_number")
+            record["source_document_url"] = source_meta.get("html_url")
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     Path(output_path).write_text(json.dumps(records, indent=2))
     print(f"  -> {len(records)} records written to {output_path}")
@@ -125,11 +134,17 @@ def extract_directory_or_file(
     output_dir: str,
     model_id: str | None,
     overwrite: bool = False,
+    pdf_index_path: str = "data/raw/pdf_index.json",
 ) -> int:
     """Extract gift records from a single PDF or every PDF in a directory."""
     model = get_model(model_id)
     pdf_path = Path(pdf_path)
     output_dir = Path(output_dir)
+
+    pdf_index = {}
+    index_file = Path(pdf_index_path)
+    if index_file.exists():
+        pdf_index = json.loads(index_file.read_text())
 
     if pdf_path.is_dir():
         pdfs = sorted(pdf_path.glob("*.pdf"))
@@ -144,6 +159,6 @@ def extract_directory_or_file(
         if out.exists() and not overwrite:
             print(f"Skipping {pdf.name} (output exists; use --overwrite to force)")
             continue
-        total += process_pdf(str(pdf), str(out), model)
+        total += process_pdf(str(pdf), str(out), model, source_meta=pdf_index.get(pdf.name))
 
     return total

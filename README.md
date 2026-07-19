@@ -97,28 +97,31 @@ The Federal Register publishes new gift notices periodically, often with a one- 
 
 ```bash
 uv run gifts pipeline all
-git add data/gifts.db data/gifts.csv data/gifts.json
+git add data/gifts.db data/gifts.csv data/gifts.json data/stats.json site/metadata.json
 git commit -m "Update dataset through <calendar year>"
 git push
 ```
 
 This is cheap to re-run: `fetch`/`download`/`extract` only touch notices and PDFs you don't already have (`extract` skips a PDF if its output JSON already exists), and `enrich` only sends *new* records to the LLM — it skips anything that already has `donor_name`/`recipient_name` filled in from a previous run. `combine` and `build-db` are pure local steps and always rebuild from everything on disk, so the output stays complete and deduplicated even though the LLM calls are incremental.
 
-Because [`site/index.html`](site/index.html) and [`site/metadata.json`](site/metadata.json) point Datasette Lite straight at the committed `data/gifts.db` on GitHub Pages, pushing the rebuilt file *is* the site update — there's no separate deploy step. The only manual follow-up is refreshing the gift-count/year-range numbers in `site/index.html`'s stat boxes and `site/metadata.json`'s description, which are display-only text, not read from the database.
+Because [`site/index.html`](site/index.html) and [`site/metadata.json`](site/metadata.json) point Datasette Lite straight at the committed `data/gifts.db` on GitHub Pages, pushing the rebuilt file *is* the site update — there's no separate deploy step. `build-db` also regenerates `data/stats.json` (which `site/index.html` fetches at page load to populate its stat boxes) and refreshes `site/metadata.json`'s `description` field, so there's no manual number-updating step left — just commit whatever `pipeline all` or `pipeline build-db` produces.
 
 ## Data Schema
 
 | Field | Description |
 |-------|-------------|
 | `name_and_title` | Recipient's full name and title, as printed |
-| `recipient_name` / `recipient_title` | Recipient name (honorifics removed) and title |
+| `recipient_name` / `recipient_title` | Recipient name (honorifics removed) and title. When the source text names no one at all (a bare "President", "Vice President", or "First Lady"), `recipient_name` is resolved from officeholder tenure dates instead — see `recipient_name_source` |
+| `recipient_name_raw` / `recipient_name_source` | The name as originally extracted, and `"date-resolved"` if it was overridden as above |
 | `gift_description` | Description of the gift |
-| `received` | Date received (yyyy-mm-dd) |
+| `received` / `received_precision` | Date received (yyyy-mm-dd), `null` if unknown; precision is `"day"`, `"month"`, `"year"`, `"range"` (a reported date range; `received` is the start date), or `"unknown"` |
 | `estimated_value` | Estimated value in USD |
-| `disposition` | What happened to the gift (e.g. "Transferred to NARA") |
+| `disposition` / `disposition_raw` | What happened to the gift, standardized to a controlled vocabulary (e.g. "Transferred to NARA", "Pending Transfer to GSA", "Retained for Official Use"), alongside the original text |
 | `foreign_donor` | Donor's full name, title, and country, as printed |
-| `donor_name` / `donor_title` / `donor_country` | Donor name, title, and country |
+| `donor_name` / `donor_title` | Donor name and title |
+| `donor_country` / `donor_country_raw` / `donor_country_iso3` / `donor_entity_type` | Donor country, canonicalized so spelling variants collapse to one value (with an ISO3 code where available), plus the original text and an `entity_type` of `"country"`, `"organization"` (UN, EU, ...), `"subnational"` (a city/region rolled up to its parent country), or `"unknown"` |
 | `circumstances` | Stated reason the gift was accepted |
+| `source_documents` / `source_urls` | Federal Register document number(s) and notice URL(s) the gift was reported in. Only populated for records extracted after this field was added, so it's blank for most of the historical dataset |
 
 ## Analysis Features
 
@@ -164,6 +167,9 @@ An interactive walkthrough of all of this lives in [`notebooks/gift_analysis.ipy
 - Reporting completeness varies by administration; a gap in a given year likely reflects a reporting delay, not an absence of gifts.
 - Values recorded as ranges (e.g. "$1,000–$1,500") resolve to the low end; vague values ("Unknown", "In appraisal process") are left blank.
 - Donor/recipient name, title, and country are parsed from free text by an LLM and may occasionally misparse unusual formatting.
+- Country canonicalization (`src/foreign_gifts/standardize.py`) covers variant spellings actually observed in this dataset, not every country on earth; an unrecognized value passes through unchanged with no ISO3 code.
+- Officeholder resolution (`src/foreign_gifts/officeholders.py`) only covers President, Vice President, First Lady, Secretary of State, and Secretary of Defense — the offices that actually appear as bare, nameless titles in the source text — and only resolves day-precision dates, to stay safely clear of inauguration-day transitions.
+- `source_documents`/`source_urls` provenance is only captured for records extracted after that field was added to the pipeline; it's blank for the bulk of the historical dataset, whose extraction predates it.
 
 ## License
 

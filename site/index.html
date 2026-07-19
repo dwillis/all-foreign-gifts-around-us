@@ -81,9 +81,9 @@
   </p>
 
   <div class="stats" id="stats">
-    <div class="stat"><span class="n">4,670</span><span class="l">gifts</span></div>
-    <div class="stat"><span class="n">2005&ndash;2022</span><span class="l">calendar years</span></div>
-    <div class="stat"><span class="n">306</span><span class="l">donor countries</span></div>
+    <div class="stat"><span class="n" id="stat-gifts">&hellip;</span><span class="l">gifts</span></div>
+    <div class="stat"><span class="n" id="stat-years">&hellip;</span><span class="l">calendar years</span></div>
+    <div class="stat"><span class="n" id="stat-countries">&hellip;</span><span class="l">donor countries</span></div>
   </div>
 
   <h2>Explore the data</h2>
@@ -105,17 +105,25 @@
   <table>
     <tr><th>Field</th><th>Description</th></tr>
     <tr><td><code>name_and_title</code></td><td>Recipient's full name and title, as printed.</td></tr>
-    <tr><td><code>recipient_name</code></td><td>Recipient name, honorifics removed.</td></tr>
+    <tr><td><code>recipient_name</code></td><td>Recipient name, honorifics removed. For source text that names no one (e.g. a bare "President"), this is resolved from who actually held the office on the date received &mdash; see <code>recipient_name_source</code>.</td></tr>
+    <tr><td><code>recipient_name_raw</code></td><td>Recipient name exactly as the LLM extracted it, before any date-based resolution.</td></tr>
+    <tr><td><code>recipient_name_source</code></td><td>"date-resolved" when <code>recipient_name</code> was filled in from officeholder tenure dates rather than the source text; blank otherwise.</td></tr>
     <tr><td><code>recipient_title</code></td><td>Recipient's official title.</td></tr>
     <tr><td><code>gift_description</code></td><td>Description of the gift.</td></tr>
-    <tr><td><code>received</code></td><td>Date received (yyyy-mm-dd).</td></tr>
+    <tr><td><code>received</code></td><td>Date received (yyyy-mm-dd, or a partial yyyy-mm/yyyy), null if unknown. See <code>received_precision</code>.</td></tr>
+    <tr><td><code>received_precision</code></td><td>"day", "month", "year", "range" (source gave a date range; <code>received</code> is the start date), or "unknown".</td></tr>
     <tr><td><code>estimated_value</code></td><td>Estimated value in USD. Null where the source gave a non-numeric value.</td></tr>
-    <tr><td><code>disposition</code></td><td>What happened to the gift (e.g. "Transferred to NARA").</td></tr>
+    <tr><td><code>disposition</code></td><td>What happened to the gift, mapped to a controlled set of values (e.g. "Transferred to NARA", "Pending Transfer to GSA", "Retained for Official Use").</td></tr>
+    <tr><td><code>disposition_raw</code></td><td>Disposition text as printed, before standardization.</td></tr>
     <tr><td><code>foreign_donor</code></td><td>Donor's full name, title, and country, as printed.</td></tr>
     <tr><td><code>donor_name</code></td><td>Donor name, honorifics removed.</td></tr>
     <tr><td><code>donor_title</code></td><td>Donor's official title.</td></tr>
-    <tr><td><code>donor_country</code></td><td>Donor's country.</td></tr>
+    <tr><td><code>donor_country</code></td><td>Donor's country, canonicalized (e.g. "People's Republic of China" and "China" both become "China").</td></tr>
+    <tr><td><code>donor_country_raw</code></td><td>Donor country exactly as printed, before canonicalization.</td></tr>
+    <tr><td><code>donor_country_iso3</code></td><td>ISO 3166-1 alpha-3 code for <code>donor_country</code>, null for international organizations or unresolved names.</td></tr>
+    <tr><td><code>donor_entity_type</code></td><td>"country", "organization" (e.g. the UN, EU), "subnational" (a city/region rolled up to its parent country), or "unknown".</td></tr>
     <tr><td><code>circumstances</code></td><td>Stated reason the gift was accepted rather than declined.</td></tr>
+    <tr><td><code>source_documents</code> / <code>source_urls</code></td><td>Federal Register document number(s) and notice URL(s) the gift was reported in. Only populated for records extracted after this field was added &mdash; blank for the bulk of the historical dataset.</td></tr>
   </table>
 
   <h2>Caveats</h2>
@@ -123,6 +131,7 @@
     <li>Some presidential administrations report more promptly and completely than others; gaps in a given year likely reflect reporting delays, not an absence of gifts.</li>
     <li>Values recorded as ranges (e.g. "$1,000&ndash;$1,500") resolve to the low end; vague values ("Unknown", "In appraisal process") are left blank.</li>
     <li>Donor and recipient names/titles/countries are parsed out of free text by an LLM and may occasionally misparse unusual formatting.</li>
+    <li>Country canonicalization covers variant spellings actually observed in this dataset, not every country on earth; unrecognized values pass through unchanged.</li>
     <li>When the recipient is an anonymous "Agency Employee," donor details are blanked to preserve that anonymity.</li>
   </ul>
 
@@ -150,6 +159,22 @@
   var liteUrl = 'https://lite.datasette.io/?url=' + encodeURIComponent(dbUrl) +
     '&metadata=' + encodeURIComponent(metadataUrl);
   document.getElementById('launch-explorer').href = liteUrl;
+
+  // Stats are generated by the pipeline's build-db step (see
+  // src/foreign_gifts/pipeline/database.py) so this page never drifts from
+  // the actual data the way a hand-edited number would.
+  fetch(base + '../data/stats.json')
+    .then(function (r) { return r.json(); })
+    .then(function (stats) {
+      document.getElementById('stat-gifts').textContent = stats.total_gifts.toLocaleString();
+      document.getElementById('stat-years').textContent = stats.min_year && stats.max_year
+        ? stats.min_year + '–' + stats.max_year
+        : 'unknown';
+      document.getElementById('stat-countries').textContent = stats.donor_countries;
+    })
+    .catch(function () {
+      document.getElementById('stats').style.display = 'none';
+    });
 </script>
 </body>
 </html>

@@ -20,8 +20,32 @@ def fetch_documents(term: str = SEARCH_TERM, agencies=AGENCIES, page: int = 1) -
     return response.json()
 
 
+def fetch_all_documents(term: str = SEARCH_TERM, agencies=AGENCIES) -> dict:
+    """Fetch every page of results, not just the first.
+
+    The Federal Register API paginates results (`next_page_url` is present
+    on every page but the last); a single fetch_documents(page=1) call
+    silently misses anything beyond page one once the notice count exceeds
+    a page size.
+    """
+    page = 1
+    results: list = []
+    data: dict = {}
+    while True:
+        data = fetch_documents(term, agencies, page=page)
+        results.extend(data.get("results", []))
+        if not data.get("next_page_url"):
+            break
+        page += 1
+
+    data = dict(data)
+    data["results"] = results
+    data["count"] = len(results)
+    return data
+
+
 def save_documents(output_path: str = "data/raw/federal_register.json") -> str:
-    data = fetch_documents()
+    data = fetch_all_documents()
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, indent=2))

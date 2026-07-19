@@ -10,13 +10,13 @@ fetch -> download -> extract -> combine -> enrich -> anonymize -> build-db
 
 | Stage | Reads | Writes | Calls an LLM? |
 |-------|-------|--------|----------------|
-| `fetch` | Federal Register API | `data/raw/federal_register.json` | No |
-| `download` | `data/raw/federal_register.json` | `data/raw/pdfs/*.pdf` | No |
-| `extract` | `data/raw/pdfs/*.pdf` | `data/interim/extracted/*.json` | Yes, for new PDFs only |
+| `fetch` | Federal Register API (all pages) | `data/raw/federal_register.json` | No |
+| `download` | `data/raw/federal_register.json` | `data/raw/pdfs/*.pdf`, `data/raw/pdf_index.json` | No |
+| `extract` | `data/raw/pdfs/*.pdf`, `data/raw/pdf_index.json` | `data/interim/extracted/*.json` | Yes, for new PDFs only |
 | `combine` | `data/interim/extracted/*.json` | `data/interim/combined.json` | No |
 | `enrich` | `data/interim/combined.json` | `data/interim/enriched.json` | Yes, for new/failed records only |
 | `anonymize` | `data/interim/enriched.json` | (modifies in place) | No |
-| `build-db` | `data/interim/enriched.json` | `data/gifts.db`, `data/gifts.csv`, `data/gifts.json` | No |
+| `build-db` | `data/interim/enriched.json` | `data/gifts.db`, `data/gifts.csv`, `data/gifts.json`, `data/stats.json`, `site/metadata.json` (description only) | No |
 
 Everything under `data/raw/` and `data/interim/` is gitignored and fully regenerable; only the three files `build-db` produces are committed.
 
@@ -34,7 +34,7 @@ uv run gifts pipeline all --model claude-haiku-4.5
 uv run gifts pipeline fetch
 ```
 
-Queries the Federal Register API for "Gifts to Federal Employees from Foreign Government Sources" notices from the State Department.
+Queries the Federal Register API for "Gifts to Federal Employees from Foreign Government Sources" notices from the State Department, walking every page of results (not just the first).
 
 ### 2. Download PDFs
 
@@ -42,7 +42,7 @@ Queries the Federal Register API for "Gifts to Federal Employees from Foreign Go
 uv run gifts pipeline download
 ```
 
-Skips any PDF already present in `data/raw/pdfs/`.
+Skips any PDF already present in `data/raw/pdfs/`. Also (re)writes `data/raw/pdf_index.json`, mapping each PDF filename to its Federal Register document number and notice URL, so `extract` can stamp provenance onto the records it pulls from that PDF.
 
 ### 3. Extract gift records
 
@@ -60,7 +60,7 @@ Pass `--overwrite` to re-process PDFs that already have output JSON.
 uv run gifts pipeline combine
 ```
 
-Merges every file in `data/interim/extracted/` into one list, deduplicating on all fields except `disposition` and merging `disposition` values into an array for records that appear in more than one notice (a gift can be reported as "Pending Transfer to NARA" one year and "Transferred to NARA" the next).
+Merges every file in `data/interim/extracted/` into one list, deduplicating on all fields except `disposition` and the `source_*` fields. `disposition` merges into an array for records that appear in more than one notice (a gift can be reported as "Pending Transfer to NARA" one year and "Transferred to NARA" the next); `source_document_number`/`source_document_url` similarly accumulate into `source_documents`/`source_urls` arrays.
 
 ### 5. Enrich donor and recipient details
 
@@ -86,7 +86,22 @@ Blanks `donor_name`, `donor_title`, and `donor_country` wherever the recipient i
 uv run gifts pipeline build-db
 ```
 
-Writes `data/gifts.db` (with FTS5 full-text search enabled on the description/name/donor fields), `data/gifts.csv`, and `data/gifts.json`.
+Writes `data/gifts.db` (with FTS5 full-text search enabled on the description/name/donor fields), `data/gifts.csv`, and `data/gifts.json`. Also standardizes several fields, always keeping the original text alongside the standardized value:
+
+- `received` / `received_precision`: unifies every "missing date" spelling (`""`, `"Unknown"`, `"unknown"`, ranges, etc.) to a single `null` + `"unknown"` precision, and flags partial (`"year"`/`"month"`) or ranged (`"range"`) dates.
+- `disposition` / `disposition_raw`: maps free text to a small controlled vocabulary (`src/foreign_gifts/standardize.py::canonicalize_disposition`) — e.g. every "Pending transfer to GSA/General Services Administration" variant collapses to one value.
+- `donor_country` / `donor_country_raw` / `donor_country_iso3` / `donor_entity_type`: canonicalizes country name variants (`canonicalize_country`), rolls subnational entities (Dubai, Bavaria, ...) up to their parent country, and flags international organizations separately.
+- `recipient_name` / `recipient_name_raw` / `recipient_name_source`: when the source text names no one at all (a bare "President", "Vice President", or "First Lady"), resolves the actual officeholder from `received` via `src/foreign_gifts/officeholders.py` instead of trusting whatever the LLM guessed. This fixes real historical rows in the shipped dataset — e.g. 2005 Bush-era gifts that had been misattributed to "Joseph R. Biden Jr." because that's who was president when enrichment ran, not who actually received the gift.
+
+`build-db` also writes `data/stats.json` (total gifts, year range, distinct donor country count) and refreshes the `description` field in `site/metadata.json`, so neither the landing page nor the Datasette Lite metadata can drift out of sync with the actual data the way hand-edited numbers did before.
+
+You can re-run standardization alone, without any new LLM calls, by pointing `build-db` at the already-built `data/gifts.json` instead of `data/interim/enriched.json`:
+
+```bash
+uv run gifts pipeline build-db --input data/gifts.json
+```
+
+Only do this from a copy of `data/gifts.json` that still has the *original* raw values in its `donor_country`/`disposition`/`recipient_name` fields (e.g. right after `git checkout` from before a standardization change) — running it a second time straight from its own already-standardized output will still produce correct canonical values, but the `_raw` columns will capture the already-standardized text instead of the true original, losing the audit trail.
 
 ## Analyzing the result
 

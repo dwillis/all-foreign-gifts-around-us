@@ -1,6 +1,6 @@
 {
   "title": "All Foreign Gifts Around Us",
-  "description": "Tangible gifts given to U.S. federal employees by foreign governments, extracted from Federal Register notices (calendar years 2005-2022).",
+  "description": "Tangible gifts given to U.S. federal employees by foreign governments, extracted from Federal Register notices (calendar years 2005-2024).",
   "license": "Public domain (U.S. Government work)",
   "license_url": "https://www.usa.gov/government-works",
   "source": "Federal Register: Office of Protocol, Gifts to Federal Employees From Foreign Government Sources",
@@ -9,23 +9,38 @@
     "gifts": {
       "tables": {
         "gifts": {
-          "description": "One row per reported gift. Source text is preserved in name_and_title and foreign_donor; recipient_name/title and donor_name/title/country are parsed out of those fields.",
+          "description": "One row per reported gift. Source text is preserved in name_and_title, foreign_donor, disposition_raw, donor_country_raw, and recipient_name_raw; the non-_raw columns hold standardized values.",
           "sort_desc": "received",
-          "facets": ["donor_country", "disposition", "recipient_title"],
+          "facets": [
+            "donor_country",
+            "donor_entity_type",
+            "disposition",
+            "recipient_title",
+            "received_precision"
+          ],
           "columns": {
             "id": "Row identifier.",
             "name_and_title": "Recipient's full name and title as printed in the Federal Register notice.",
-            "recipient_name": "Recipient name, honorifics removed.",
+            "recipient_name": "Recipient name, honorifics removed. Resolved from officeholder tenure dates when the source text names no one (see recipient_name_source).",
+            "recipient_name_raw": "Recipient name exactly as the LLM extracted it, before date-based resolution.",
+            "recipient_name_source": "\"date-resolved\" when recipient_name was filled in from tenure dates rather than the source text; blank otherwise.",
             "recipient_title": "Recipient's official title.",
             "gift_description": "Description of the gift.",
-            "received": "Date the gift was received (yyyy-mm-dd).",
+            "received": "Date the gift was received (yyyy-mm-dd, or a partial yyyy-mm/yyyy); null if unknown. See received_precision.",
+            "received_precision": "\"day\", \"month\", \"year\", \"range\" (received is the start of a reported date range), or \"unknown\".",
             "estimated_value": "Estimated value in USD. Null where the source listed a non-numeric value (e.g. \"Unknown\", \"In appraisal process\"); ranges (e.g. \"1000-1500\") resolve to the low end.",
-            "disposition": "What happened to the gift (e.g. \"Transferred to NARA\").",
+            "disposition": "What happened to the gift, standardized to a controlled set of values (e.g. \"Transferred to NARA\", \"Pending Transfer to GSA\", \"Retained for Official Use\").",
+            "disposition_raw": "Disposition text as printed, before standardization.",
             "foreign_donor": "Donor's full name, title, and country as printed in the Federal Register notice.",
             "donor_name": "Donor name, honorifics removed. Blank when the recipient is an anonymous agency employee.",
             "donor_title": "Donor's official title.",
-            "donor_country": "Donor's country.",
-            "circumstances": "Stated reason the gift was accepted rather than declined."
+            "donor_country": "Donor's country, canonicalized so spelling/name variants collapse to one value.",
+            "donor_country_raw": "Donor country exactly as printed, before canonicalization.",
+            "donor_country_iso3": "ISO 3166-1 alpha-3 code for donor_country; null for organizations or unresolved names.",
+            "donor_entity_type": "\"country\", \"organization\" (e.g. UN, EU), \"subnational\" (city/region rolled up to its parent country), or \"unknown\".",
+            "circumstances": "Stated reason the gift was accepted rather than declined.",
+            "source_documents": "Federal Register document number(s) the gift was reported in, comma-separated. Only populated for records extracted after this field was added.",
+            "source_urls": "Federal Register notice URL(s) for source_documents, comma-separated."
           }
         }
       },
@@ -35,12 +50,20 @@
           "title": "Most valuable gifts"
         },
         "gifts_by_country": {
-          "sql": "select donor_country, count(*) as gift_count, sum(estimated_value) as total_value from gifts where donor_country is not null group by donor_country order by gift_count desc",
+          "sql": "select donor_country, donor_country_iso3, count(*) as gift_count, sum(estimated_value) as total_value from gifts where donor_country is not null group by donor_country order by gift_count desc",
           "title": "Gifts by donor country"
         },
         "gifts_by_year": {
-          "sql": "select strftime('%Y', received) as year, count(*) as gift_count, sum(estimated_value) as total_value from gifts where received is not null and received != '' group by year order by year desc",
+          "sql": "select substr(received, 1, 4) as year, count(*) as gift_count, sum(estimated_value) as total_value from gifts where received is not null group by year order by year desc",
           "title": "Gifts by year"
+        },
+        "disposition_breakdown": {
+          "sql": "select disposition, count(*) as gift_count from gifts group by disposition order by gift_count desc",
+          "title": "Gifts by disposition"
+        },
+        "date_resolved_recipients": {
+          "sql": "select recipient_name, recipient_name_raw, name_and_title, received, gift_description from gifts where recipient_name_source = 'date-resolved' order by received",
+          "title": "Recipients resolved from officeholder tenure dates"
         }
       }
     }
